@@ -1,0 +1,389 @@
+<?php 
+require '/Users/eniga/OneDrive/Documentos/Programacion/practicas de php/Pryecto I.N.A.E - copia/config/connection.php';
+
+session_start();
+
+$sql_check = "SELECT * FROM productos";
+$stmt_check = $conn->prepare($sql_check);
+$stmt_check->execute();
+$result_check = $stmt_check->get_result();
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/assets/img/logo/users-alt (1).png">
+
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/src/css/styles.css">
+    <script src="/src/js/script.js"></script>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+
+    <script src="/src/public/js/script.js" async></script>
+</head>
+
+<body>
+    <header>
+        <nav
+            class="navbar navbar-expand-lg bg d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
+            <div class="container-fluid mb-2">
+                <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                    <svg height="40" preserveAspectRatio="xMidYMid" width="40" xmlns="http://www.w3.org/2000/svg"
+                        class="logotecno" viewBox="0 0 256 167.509">
+                        <path fill="#fff"
+                            d="M247.942 23.314 256 2.444l-.35-1.293-79.717 21.003C184.433 9.86 181.513 0 181.513 0s-25.457 16.257-44.709 15.832c-19.251-.426-25.457-5.564-54.977 3.853-29.52 9.41-37.86 38.295-46.419 44.5S0 90.603 0 90.603l.058.359 24.207-7.707S17.625 89.51 3.52 108.52l-.659-.609.025.134s11.336 17.324 22.463 14.121c1.118-.325 2.377-.859 3.753-1.56 4.48 2.495 10.327 4.947 16.783 5.622 0 0-4.37-5.08-8.016-10.86.984-.634 1.994-1.293 3.02-1.96l-.476.334 9.217 3.386-1.017-8.666c.033-.017.058-.042.091-.059l9.059 3.328-1.126-7.882a76.868 76.868 0 0 1 3.436-1.693l9.443-35.717 39.045-26.634-3.103 7.808c-7.916 19.468-22.78 24.064-22.78 24.064l-6.206 2.352c-4.612 5.455-6.556 6.798-8.14 25.107 3.72-.934 7.273-1.16 10.492-.292 16.683 4.496 22.463 24.599 17.967 30.162-1.126 1.393-3.803 3.77-7.181 6.565h-6.773l-.092 5.488c-.234.184-.467.359-.693.542h-6.89l-.083 5.355c-.609.468-1.218.918-1.801 1.36-6.473.133-14.673-5.514-14.673-5.514 0 5.139 4.28 13.046 4.28 13.046s.283-.133.758-.367c-.417.309-.65.476-.65.476s17.324 11.552 28.235 7.273c9.7-3.804 34.816-23.606 56.495-32.981l65.603-17.283 8.65-22.413-49.997 13.17V83.597l58.664-15.457 8.65-22.413-67.297 17.734V43.324z" />
+                    </svg>
+                    <h4 class="text-center text-light mt-1 pt-1"> I.N.A.E</h4>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul
+                        class="nav col-12 col-md-auto mb-2 align-items-center justify-content-center justify-content-md-between mb-md-0">
+                        <li><a href="#" class="nav-link px-2  linear">Home</a></li>
+                        <li><a href="#" class="nav-link px-2  linear">Features</a></li>
+                        <li><a href="#" class="nav-link px-2  linear">Pricing</a></li>
+                        <li><a href="/src/public/carrito.html" class="nav-link px-2  linear">Carrito</a></li>
+                        <li><a href="#" class="nav-link px-2  linear">About</a></li>
+                    </ul>
+                    <form class="d-flex text-end">
+                        <div class="text-end">
+                            <button class="btn btn-outline-dark position-relative text-white mx-3" type="submit">
+                                <i class="fas fa-shopping-cart me-1"></i> <!-- Ícono de carrito de Font Awesome -->
+                                <a href="" class="text-decoration-none">Cart</a>
+                                <span
+                                    class="badge bg-dark text-white ms-1 rounded-pill position-absolute top-50 start-100 translate-middle">0</span>
+                            </button>
+                            <button type="button" class="btn btn-primary">login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="home-page" class="home-page">
+        <div class="container row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 px-5">
+            <?php  foreach ($resultado as $row ) ?>
+            <div class="col">
+                <div class="card shadow-sm">
+
+
+                    <img src="<?php echo $imagen; ?>" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php  echo $row['nombre']; ?></h5>
+                        <p class=" card-text">$<?php  echo number_format($row['precio'],2 ,'.' , ','); ?></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">
+                                    <a href="/src/view/datails.php=<?php echo $row['id']; ?> & "
+                                        class="text-decoration-none">Details</a>
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-success">
+                                <a href="" class="text-decoration-none">Agregar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="https://t3.ftcdn.net/jpg/00/45/42/98/360_F_45429810_QFJh9aujYWuaYP1ra6xdlSzhp8Matil9.jpg"
+                        alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">$titulo del producto</h5>
+                        <p class="card-text">$precio</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">
+                                    <a href="" class="text-decoration-none">Details</a>
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-success">
+                                <a href="" class="text-decoration-none">Agregar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="https://t3.ftcdn.net/jpg/00/45/42/98/360_F_45429810_QFJh9aujYWuaYP1ra6xdlSzhp8Matil9.jpg"
+                        alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">$titulo del producto</h5>
+                        <p class="card-text">$precio</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">
+                                    <a href="" class="text-decoration-none">Details</a>
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-success">
+                                <a href="" class="text-decoration-none">Agregar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="https://t3.ftcdn.net/jpg/00/45/42/98/360_F_45429810_QFJh9aujYWuaYP1ra6xdlSzhp8Matil9.jpg"
+                        alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">$titulo del producto</h5>
+                        <p class="card-text">$precio</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">
+                                    <a href="" class="text-decoration-none">Details</a>
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-success">
+                                <a href="" class="text-decoration-none">Agregar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="https://t3.ftcdn.net/jpg/00/45/42/98/360_F_45429810_QFJh9aujYWuaYP1ra6xdlSzhp8Matil9.jpg"
+                        alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">$titulo del producto</h5>
+                        <p class="card-text">$precio</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">
+                                    <a href="" class="text-decoration-none">Details</a>
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-success">
+                                <a href="" class="text-decoration-none">Agregar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="https://t3.ftcdn.net/jpg/00/45/42/98/360_F_45429810_QFJh9aujYWuaYP1ra6xdlSzhp8Matil9.jpg"
+                        alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">$titulo del producto</h5>
+                        <p class="card-text">$precio</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">
+                                    <a href="" class="text-decoration-none">Details</a>
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-success">
+                                <a href="" class="text-decoration-none">Agregar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="https://t3.ftcdn.net/jpg/00/45/42/98/360_F_45429810_QFJh9aujYWuaYP1ra6xdlSzhp8Matil9.jpg"
+                        alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">$titulo del producto</h5>
+                        <p class="card-text">$precio</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">
+                                    <a href="" class="text-decoration-none">Details</a>
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-success">
+                                <a href="" class="text-decoration-none">Agregar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="https://t3.ftcdn.net/jpg/00/45/42/98/360_F_45429810_QFJh9aujYWuaYP1ra6xdlSzhp8Matil9.jpg"
+                        alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">$titulo del producto</h5>
+                        <p class="card-text">$precio</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">
+                                    <a href="" class="text-decoration-none">Details</a>
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-success">
+                                <a href="" class="text-decoration-none">Agregar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="https://t3.ftcdn.net/jpg/00/45/42/98/360_F_45429810_QFJh9aujYWuaYP1ra6xdlSzhp8Matil9.jpg"
+                        alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">$titulo del producto</h5>
+                        <p class="card-text">$precio</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">
+                                    <a href="" class="text-decoration-none">Details</a>
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-success">
+                                <a href="" class="text-decoration-none">Agregar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="https://t3.ftcdn.net/jpg/00/45/42/98/360_F_45429810_QFJh9aujYWuaYP1ra6xdlSzhp8Matil9.jpg"
+                        alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">$titulo del producto</h5>
+                        <p class="card-text">$precio</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">
+                                    <a href="" class="text-decoration-none">Details</a>
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-success">
+                                <a href="" class="text-decoration-none">Agregar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+
+
+        </div>
+
+
+    </main>
+
+
+    <footer>
+        <footer class="footer py-5">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Contacto e Información -->
+                    <div class="row mt-4">
+                        <!-- Logo y Contacto -->
+                        <div class="col-md-3 text-center">
+                            <h3> I.N.A.E </h3>
+                            <svg height="100" preserveAspectRatio="xMidYMid" width="100"
+                                xmlns="http://www.w3.org/2000/svg" class="logotecno" viewBox="0 0 256 167.509">
+                                <path fill="#fff"
+                                    d="M247.942 23.314 256 2.444l-.35-1.293-79.717 21.003C184.433 9.86 181.513 0 181.513 0s-25.457 16.257-44.709 15.832c-19.251-.426-25.457-5.564-54.977 3.853-29.52 9.41-37.86 38.295-46.419 44.5S0 90.603 0 90.603l.058.359 24.207-7.707S17.625 89.51 3.52 108.52l-.659-.609.025.134s11.336 17.324 22.463 14.121c1.118-.325 2.377-.859 3.753-1.56 4.48 2.495 10.327 4.947 16.783 5.622 0 0-4.37-5.08-8.016-10.86.984-.634 1.994-1.293 3.02-1.96l-.476.334 9.217 3.386-1.017-8.666c.033-.017.058-.042.091-.059l9.059 3.328-1.126-7.882a76.868 76.868 0 0 1 3.436-1.693l9.443-35.717 39.045-26.634-3.103 7.808c-7.916 19.468-22.78 24.064-22.78 24.064l-6.206 2.352c-4.612 5.455-6.556 6.798-8.14 25.107 3.72-.934 7.273-1.16 10.492-.292 16.683 4.496 22.463 24.599 17.967 30.162-1.126 1.393-3.803 3.77-7.181 6.565h-6.773l-.092 5.488c-.234.184-.467.359-.693.542h-6.89l-.083 5.355c-.609.468-1.218.918-1.801 1.36-6.473.133-14.673-5.514-14.673-5.514 0 5.139 4.28 13.046 4.28 13.046s.283-.133.758-.367c-.417.309-.65.476-.65.476s17.324 11.552 28.235 7.273c9.7-3.804 34.816-23.606 56.495-32.981l65.603-17.283 8.65-22.413-49.997 13.17V83.597l58.664-15.457 8.65-22.413-67.297 17.734V43.324z" />
+                            </svg>
+
+                            <p><strong>Tienes alguna pregunta?</strong></p>
+                            <p><i class="fas fa-phone-alt"></i> (507) 6551-5025</p>
+                            <p><i class="fas fa-phone-alt"></i> (507) 383-7799</p>
+                            <p><i class="fas fa-envelope"></i> ventasweb@loltec.com</p>
+
+                            <div class="social-icons icons">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-tiktok"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Categorías -->
+                        <div class="col-md-3">
+                            <h5>Categorías Destacadas</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Accesorios</a></li>
+                                <li><a href="#">Componentes</a></li>
+                                <li><a href="#">Computadoras</a></li>
+                                <li><a href="#">Monitores & Proyectores</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Atención al cliente -->
+                        <div class="col-md-3">
+                            <h5>Atención al cliente</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Mi Cuenta</a></li>
+                                <li><a href="#">Consulta tu Orden</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Información -->
+                        <div class="col-md-3">
+                            <h5>Información</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Sobre Nosotros</a></li>
+                                <li><a href="#">Políticas Y Privacidad</a></li>
+                                <li><a href="#">Términos y Condiciones</a></li>
+                                <li><a href="#">Preguntas Frecuentes</a></li>
+                                <li><a href="#">Políticas De Garantías</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- Derechos Reservados y WhatsApp -->
+                    <div class="row mt-4">
+                        <div class="col-md-6 text-center text-md-start">
+                            <p>&copy; I.N.A.E - Todos los Derechos Reservados</p>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <a href="#" class="btn btn-success">
+                                <i class="fab fa-whatsapp"></i> Escríbenos por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </footer>
+
+</body>
+
+</html>
