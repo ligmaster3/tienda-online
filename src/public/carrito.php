@@ -15,12 +15,14 @@ require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\P
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Shop Item </title>
     <link rel="stylesheet" href="/src/css/styles.css">
-    <script src="/src/js/script.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="/src/js/script.js"></script>
 </head>
 
 <body>
@@ -31,6 +33,7 @@ require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\P
     <main id="list-carrito">
         <h2 class="shop-title text-center">Tu Carrito</h2>
         <div class="container list-carrito-product" id="shop-list">
+            <?php  $total = 0; if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) { ?>
             <table class="table table-striped table-hover" id="productTable">
                 <thead class="table-dark">
                     <tr>
@@ -44,12 +47,11 @@ require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\P
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $total = 0;
-                    if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
-                        foreach ($_SESSION['carrito'] as $indice => $producto) {
-                            $subtotal = $producto['precio'] * $producto['cantidad'];
-                            $total += $subtotal;
+                    <?php 
+                    
+                     foreach ($_SESSION['carrito'] as $indice => $producto) {
+                        $subtotal = $producto['precio'] * $producto['cantidad'];
+                        $total += $subtotal;
                     ?>
                     <tr>
                         <td><?php echo $indice + 1; ?></td>
@@ -60,18 +62,21 @@ require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\P
                         <td>$<?php echo number_format($producto['precio'], 2); ?></td>
                         <td><?php echo $producto['cantidad']; ?></td>
                         <td>$<?php echo number_format($subtotal, 2); ?></td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-danger"
-                                onclick="VaciarCompra(<?php echo $value['id']; ?>)">Eliminar</button>
-                        </td>
+                        <form action="" method="POST">
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-danger"
+                                    onclick="eliminarProductoCarrito(<?php echo $value['id']; ?>)">Eliminar</button>
+                            </td>
+                        </form>
                     </tr>
                     <?php
                         }
                     } else {
                         ?>
-                    <tr>
-                        <td colspan="7">No se encontraron productos en el carrito.</td>
-                    </tr>
+                    <div class="alert alert-warning" role="alert">
+                        <h4 class="alert-heading">No se encontraron productos en el carrito</h4>
+                    </div>
+
                     <?php
                     }
                     ?>
@@ -108,8 +113,9 @@ require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\P
         <div id="shop-acciones" class="shop-acciones mt-4">
             <div class="shop">
                 <div class="shop-acciones-total justify-content-between align-items-center">
-                    <p class="m-0">Total:</p>
-                    <td colspan="2"><strong>$<?php echo number_format($total, 2); ?></strong></td>
+                    <p class="m-0 fw-bold">Total:
+                        <strong>$<?php echo number_format($total, 2); ?></strong>
+                    </p>
                 </div>
                 <div class="d-flex justify-content-around mt-3">
                     <button id="shop-vaciar" class="shop-acciones-btn vaciar" name="vaciar"
@@ -149,7 +155,8 @@ require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\P
             </p>
         </div>
     </main>
-
+    <?php 
+    ?>
     <!-- <script>
     $(document).ready(function() {
         $('#productTable').DataTable({

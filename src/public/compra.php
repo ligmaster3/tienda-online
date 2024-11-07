@@ -32,7 +32,6 @@ require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\P
 
 </head>
 
-<?php  include 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\Pryecto I.N.A.E - copia\src\components\header.php';?>
 
 <body class="bg-body-tertiary">
 

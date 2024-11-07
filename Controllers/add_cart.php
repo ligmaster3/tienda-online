@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!$producto_existe) {
         $_SESSION['carrito'][] = $producto;
     }
-
+    sleep(1);
     header("Location: \src\public\carrito.php");
     exit();
 } else {

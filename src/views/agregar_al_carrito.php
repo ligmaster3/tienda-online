@@ -33,6 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: carrito.php");
     exit();
 } else {
-    header("Location: productos.php");
+    header("Location: home_product.php");
     exit();
 }
