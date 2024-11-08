@@ -10,37 +10,16 @@ function confirmarCompra() {
   modalInstance.hide();
 }
 
-function eliminarProductoCarrito(idProducto) {
-  // Mostrar notificación antes de eliminar el producto
+function mostrarNotificacionEliminar() {
+  // Mostrar notificación Toastify
   Toastify({
-    text: "Producto eliminado del carrito",
-    duration: 3000,
-    gravity: "top",
-    position: "right",
-    backgroundColor: "#ff5f5f",
-    close: true
+      text: "Producto eliminado del carrito",
+      duration: 2500,
+      close: true,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#ff5f5f",
   }).showToast();
-
-  // Esperar antes de enviar el formulario
-  setTimeout(() => {
-    // Crear un formulario oculto para enviar el ID del producto al servidor
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = "eliminar_del_carrito.php"; // Archivo PHP que procesará la eliminación
-
-    // Crear un campo oculto para el ID del producto
-    const inputId = document.createElement("input");
-    inputId.type = "hidden";
-    inputId.name = "id";
-    inputId.value = idProducto;
-
-    // Agregar el campo oculto al formulario
-    form.appendChild(inputId);
-
-    // Agregar el formulario al cuerpo del documento y enviarlo
-    document.body.appendChild(form);
-    form.submit();
-  }, 3000); // Esperar 3 segundos antes de enviar el formulario
 }
 
 function VaciarCompra() {

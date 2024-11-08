@@ -62,12 +62,14 @@ require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\P
                         <td>$<?php echo number_format($producto['precio'], 2); ?></td>
                         <td><?php echo $producto['cantidad']; ?></td>
                         <td>$<?php echo number_format($subtotal, 2); ?></td>
-                        <form action="" method="POST">
-                            <td class="text-center">
-                                <button class="btn btn-sm btn-danger"
-                                    onclick="eliminarProductoCarrito(<?php echo $value['id']; ?>)">Eliminar</button>
-                            </td>
-                        </form>
+                        <td class="text-center">
+                            <!-- Formulario para enviar el ID del producto a eliminar -->
+                            <form action="" method="POST">
+                                <input type="hidden" name="id" value="<?= $producto['id'] ?>">
+                                <button class="btn btn-sm btn-danger" name="Eliminar"
+                                    onclick="mostrarNotificacionEliminar()">Eliminar</button>
+                            </form>
+                        </td>
                     </tr>
                     <?php
                         }
