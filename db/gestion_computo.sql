@@ -79,6 +79,15 @@ CREATE TABLE  Ventas (
     FOREIGN KEY (id_producto) REFERENCES Productos(id)
 );
 
+
+id 
+clavedepago VARCHAR(300)
+paydate TEXT
+fecha DATETIME
+correo VARCHAR(500)
+total DECIMAL(60.2)
+status VARCHAR 
+
 INSERT INTO Categorias (nombre, descripcion, imagen) VALUES
 ('Laptops', 'Computadoras portátiles de alto rendimiento.', 'imagenes/laptops.jpg'),
 ('Escritorios', 'Computadoras de escritorio para uso en oficina.', 'imagenes/escritorios.jpg'),

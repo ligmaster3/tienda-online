@@ -8,10 +8,12 @@ include 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\Pryect
 if ($_POST) {
 
     $total = 0;
+    $SID = session_id();
     foreach ($_SESSION['carrito'] as $indice => $producto) {
 
         $total + $total + $producto['precio'] * $producto['cantidad'];
     }
+    echo '<p>total: </p>';
 }
 
 ?>
