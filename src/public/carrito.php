@@ -13,6 +13,7 @@ require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\P
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="shortcut icon" href="/assets/img/logo/Fastify_dark.svg">
     <title>Shop Item </title>
     <link rel="stylesheet" href="/src/css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
