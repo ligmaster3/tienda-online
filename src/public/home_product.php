@@ -70,7 +70,6 @@ $productos = mysqli_fetch_all($result, MYSQLI_ASSOC); // Trae todos los producto
         function addToCart(event) {
             event.preventDefault(); // Evitar envío automático del formulario
 
-            // Mostrar notificación Toastify
             Toastify({
                 text: "Producto añadido al carrito",
                 duration: 2500,
