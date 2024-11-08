@@ -1,10 +1,12 @@
 <?php 
+session_start();
 require 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\Pryecto I.N.A.E - copia\Controllers/function.php';
 
 require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\Pryecto I.N.A.E - copia\config/connection.php';
 
 // Obtenemos el ID del producto desde la URL
 $id_producto = isset($_GET['id']) ? intval($_GET['id']) : null;
+
 
 if ($id_producto === null) {
     echo "No se ha proporcionado un ID válido.";

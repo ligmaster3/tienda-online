@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     apellido VARCHAR(255) NOT NULL,
     correo VARCHAR(255) NOT NULL UNIQUE,
     contraseña VARCHAR(255) NOT NULL,
-    rol ENUM('admin', 'contador', 'ayudante') NOT NULL,
+    rol ENUM('admin', 'contador', 'ayudante' , 'cliente') NOT NULL,
     foto_perfil VARCHAR(255)
 );
 

@@ -40,6 +40,68 @@ td {
     color: white;
 
 }
+.logo {
+    display: block;
+    margin: 0 auto 20px;
+    width: 100px; /* Tamaño del logo */
+}
+
+/* Login Formate */
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+}
+
+.login .alert {
+    padding: 15px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.login form {
+    color: black;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login form h2 {
+    text-align: center;
+}
+
+.LoginFormsDate input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.loginformsDate button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
 
 header ul {
@@ -76,7 +138,7 @@ header li a.linear:hover {
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-header form  .btn-outline-dark {
+header form .btn-outline-dark {
     background-color: #333333d1;
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
@@ -170,10 +232,12 @@ section {
     overflow: hidden;
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
 .card .card-img-top:hover {
     opacity: 1;
     transform: scale(0.80);
 }
+
 .card .card-body .card-text {
     letter-spacing: .15px;
 }

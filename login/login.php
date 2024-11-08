@@ -8,22 +8,18 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container login" id="loginForms">
         <img src="imagenes/datadog.svg" alt="Logo" class="logo">
         <h2>Iniciar Sesión</h2>
-        <form method="post" action="/Controllers/authentication.php">
+        <?php if (!empty($error)): ?>
+        <div class="alert alert-danger text-center"><?php echo $error; ?></div>
+        <?php endif; ?>
+        <form method="post" action="/Services/authentication.php" class="LoginFormsDate">
             <label for="correo">Correo Electrónico:</label>
             <input type="email" name="correo" required>
             <br>
             <label for="password">Contraseña:</label>
             <input type="password" name="password" required>
-            <br>
-            <label for="rol">Rol:</label>
-            <select name="rol" required>
-                <option value="admin">Administrador</option>
-                <option value="tecnico">Técnico</option>
-                <option value="usuario">Usuario</option>
-            </select>
             <br>
             <button type="submit" value="">Iniciar Sesión</button>
         </form>
