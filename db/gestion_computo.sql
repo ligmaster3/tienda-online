@@ -1,119 +1,140 @@
 Create database  proyectog;
 
 use proyectog;
-
-CREATE TABLE Categorias (
-    id_categoria INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT,
-    imagen VARCHAR(255)  
+    imagen VARCHAR(255)
 );
 
-CREATE TABLE Usuarios (
+CREATE TABLE IF NOT EXISTS Usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    apellido VARCHAR(100) NOT NULL,
-    correo VARCHAR(100) UNIQUE NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    correo VARCHAR(255) NOT NULL UNIQUE,
     contraseña VARCHAR(255) NOT NULL,
-    rol ENUM('admin', 'contador', 'ayudante') NOT NULL, 
-    foto_perfil VARCHAR(255)  
+    rol ENUM('admin', 'contador', 'ayudante') NOT NULL,
+    foto_perfil VARCHAR(255)
 );
 
-CREATE TABLE Empleados (
+CREATE TABLE IF NOT EXISTS Empleados (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    apellido VARCHAR(100) NOT NULL,
-    puesto VARCHAR(100) NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    puesto VARCHAR(255) NOT NULL,
     usuario_id INT,
-    FOREIGN KEY (usuario_id) REFERENCES Usuarios(id) ON DELETE SET NULL
+    FOREIGN KEY (usuario_id) REFERENCES Usuarios(id) ON DELETE CASCADE
 );
 
-CREATE TABLE Productos (
-    id_producto INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Productos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT,
     precio DECIMAL(10, 2) NOT NULL,
     stock INT NOT NULL,
     categoria_id INT,
-    activo INT,
-    imagen VARCHAR(255),  
-    FOREIGN KEY (categoria_id) REFERENCES Categorias(id_categoria) ON DELETE CASCADE
+    imagen VARCHAR(255),
+    descripcion_larga TEXT,
+    FOREIGN KEY (categoria_id) REFERENCES Categorias(id) ON DELETE SET NULL
 );
 
-
-CREATE TABLE Pedidos (
-    id_pedido INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT,
-    fecha_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
-    estado ENUM('pendiente', 'completado', 'cancelado'),
-    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id) ON DELETE CASCADE
+CREATE TABLE IF NOT EXISTS Clientes (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    telefono VARCHAR(20),
+    direccion TEXT,                  
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Detalles_Pedido (
-    id_detalle INT AUTO_INCREMENT PRIMARY KEY,
-    id_pedido INT,
-    id_producto INT,
-    cantidad INT NOT NULL,
-    precio_unitario DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (id_pedido) REFERENCES Pedidos(id_pedido) ON DELETE CASCADE,
-    FOREIGN KEY (id_producto) REFERENCES Productos(id_producto) ON DELETE CASCADE
-);
-
-CREATE TABLE Equipos (
-    id_equipo INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL,
-    descripcion TEXT,
-    precio DECIMAL(10, 2) NOT NULL,
-    stock INT NOT NULL,
-    imagen VARCHAR(255) 
-);
-
-CREATE TABLE  Ventas (
+CREATE TABLE IF NOT EXISTS Ventas (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    cliente_id INT,
     id_usuario INT,
     id_producto INT,
     cantidad INT NOT NULL,
     precio_total DECIMAL(10, 2) NOT NULL,
     fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id),
-    FOREIGN KEY (id_producto) REFERENCES Productos(id)
+    FOREIGN KEY (cliente_id) REFERENCES Clientes(id_cliente) ON DELETE SET NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id) ON DELETE SET NULL,
+    FOREIGN KEY (id_producto) REFERENCES Productos(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS Pedidos (
+    id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT,
+    venta_id INT,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    estado ENUM('pendiente', 'completado', 'cancelado') NOT NULL,
+    descripcion TEXT,
+    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente) ON DELETE SET NULL,
+    FOREIGN KEY (venta_id) REFERENCES Ventas(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS Detalles_Pedido (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_pedido INT,
+    id_producto INT,
+    cantidad INT NOT NULL,
+    FOREIGN KEY (id_pedido) REFERENCES Pedidos(id_pedido) ON DELETE CASCADE,
+    FOREIGN KEY (id_producto) REFERENCES Productos(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Equipos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    descripcion TEXT,
+    estado ENUM('disponible', 'en uso', 'fuera de servicio') NOT NULL,
+    Empleados_id INT,
+    FOREIGN KEY (Empleados_id) REFERENCES Empleados(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS pagos (
+    id_pago INT AUTO_INCREMENT PRIMARY KEY,
+    id_venta INT NOT NULL,     
+    metodo_pago ENUM('tarjeta', 'paypal') NOT NULL,  
+    tipo_tarjeta VARCHAR(50),  
+    numero_cuenta VARCHAR(100) NOT NULL, 
+    fecha_pago TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    monto DECIMAL(10, 2) NOT NULL, 
+    estado_pago ENUM('completado', 'pendiente', 'fallido') DEFAULT 'pendiente',
+    FOREIGN KEY (id_venta) REFERENCES Ventas(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Entregas (
+    id_entrega INT AUTO_INCREMENT PRIMARY KEY,
+    id_venta INT NOT NULL,             
+    metodo_entrega VARCHAR(100) NOT NULL, 
+    fecha_entrega DATE NOT NULL,       
+    hora_entrega TIME NOT NULL,        
+    tipo_envio VARCHAR(50) NOT NULL,
+    FOREIGN KEY (id_venta) REFERENCES Ventas(id) ON DELETE CASCADE
 );
 
 INSERT INTO Categorias (nombre, descripcion, imagen) VALUES
-('Laptops', 'Computadoras portátiles de alto rendimiento.', 'imagenes/laptops.jpg'),
-('Escritorios', 'Computadoras de escritorio para uso en oficina.', 'imagenes/escritorios.jpg'),
-('Periféricos', 'Dispositivos adicionales como teclados y ratones.', 'imagenes/perifericos.jpg'),
-('Software', 'Aplicaciones para distintas necesidades.', 'imagenes/software.jpg'),
-('Servidores', 'Equipos para gestionar redes y servicios.', 'imagenes/servidores.jpg'),
-('Monitores', 'Pantallas de alta definición.', 'imagenes/monitores.jpg'),
-('Componentes', 'Partes para ensamblar computadoras.', 'imagenes/componentes.jpg'),
-('Redes', 'Equipos y software para redes.', 'imagenes/redes.jpg'),
-('Accesorios', 'Complementos para dispositivos electrónicos.', 'imagenes/accesorios.jpg'),
-('Gaming', 'Equipos y accesorios para videojuegos.', 'imagenes/gaming.jpg');
+('Laptops', 'Portátiles de última generación', 'laptops.jpg'),
+('Smartphones', 'Teléfonos inteligentes de diversas marcas', 'smartphones.jpg'),
+('Tablets', 'Tabletas de distintas marcas y tamaños', 'tablets.jpg'),
+('Accesorios', 'Accesorios tecnológicos como teclados, ratones, etc.', 'accesorios.jpg'),
+('Cámaras', 'Cámaras fotográficas y de video', 'camaras.jpg'),
+('Audio', 'Auriculares, altavoces, y otros dispositivos de audio', 'audio.jpg');
 
 INSERT INTO Usuarios (nombre, apellido, correo, contraseña, rol, foto_perfil) VALUES
-('Juan', 'Pérez', 'juan.perez@gmail.com', 'hashed_password_1', 'admin', 'imagenes/juan.jpg'),
-('María', 'Gómez', 'maria.gomez@gmail.com', 'hashed_password_2', 'contador', 'imagenes/maria.jpg'),
-('Carlos', 'López', 'carlos.lopez@gmail.com', 'hashed_password_3', 'ayudante', 'imagenes/carlos.jpg'),
-('Ana', 'Martínez', 'ana.martinez@gmail.com', 'hashed_password_4', 'admin', 'imagenes/ana.jpg'),
-('Luis', 'Rodríguez', 'luis.rodriguez@gmail.com', 'hashed_password_5', 'contador', 'imagenes/luis.jpg'),
-('Sofía', 'Fernández', 'sofia.fernandez@gmail.com', 'hashed_password_6', 'ayudante', 'imagenes/sofia.jpg'),
-('Diego', 'Hernández', 'diego.hernandez@gmail.com', 'hashed_password_7', 'admin', 'imagenes/diego.jpg'),
-('Lucía', 'Torres', 'lucia.torres@gmail.com', 'hashed_password_8', 'contador', 'imagenes/lucia.jpg'),
-('Andrés', 'Ramírez', 'andres.ramirez@gmail.com', 'hashed_password_9', 'ayudante', 'imagenes/andres.jpg'),
-('Isabel', 'Díaz', 'isabel.diaz@gmail.com', 'hashed_password_10', 'admin', 'imagenes/isabel.jpg');
+('Ana', 'Lopez', 'ana.lopez@gmail.com', 'password123', 'admin', 'ana.jpg'),
+('Carlos', 'Ramirez', 'carlos.ramirez@gmail.com', 'password456', 'contador', 'carlos.jpg'),
+('Paola', 'Hernandez', 'paola.hernandez@gmail.com', 'password789', 'ayudante', 'paola.jpg'),
+('Luis', 'Mendoza', 'luis.mendoza@gmail.com', 'pass123', 'admin', 'luis.jpg'),
+('Elena', 'Garcia', 'elena.garcia@gmail.com', 'securepassword', 'contador', 'elena.jpg'),
+('Javier', 'Diaz', 'javier.diaz@gmail.com', 'javier123', 'ayudante', 'javier.jpg');
 
 INSERT INTO Empleados (nombre, apellido, puesto, usuario_id) VALUES
-('Juan', 'Pérez', 'Gerente', 1),
-('María', 'Gómez', 'Contadora', 2),
-('Carlos', 'López', 'Soporte Técnico', 3),
-('Ana', 'Martínez', 'Jefa de Ventas', 4),
-('Luis', 'Rodríguez', 'Analista Financiero', 5),
-('Sofía', 'Fernández', 'Asistente Administrativa', 6),
-('Diego', 'Hernández', 'Gerente de IT', 7),
-('Lucía', 'Torres', 'Contadora', 8),
-('Andrés', 'Ramírez', 'Técnico de Soporte', 9),
-('Isabel', 'Díaz', 'Gerente de Marketing', 10);
+('Ricardo', 'Martínez', 'Gerente General', 1),
+('Paola', 'Hernández', 'Contadora', 2),
+('Fernando', 'Lopez', 'Soporte Técnico', 3),
+('Gabriela', 'Sanchez', 'Vendedora', 4),
+('Santiago', 'Ruiz', 'Contador', 5),
+('Valeria', 'Gomez', 'Asistente Administrativa', 6);
 
 INSERT INTO Productos (nombre, descripcion, precio, stock, categoria_id, imagen) VALUES
 ('Laptop Dell XPS 13', 'Laptop ultradelgada con pantalla 4K.', 1200.00, 10, 1, 'imagenes/dell_xps_13.jpg'),
@@ -127,26 +148,42 @@ INSERT INTO Productos (nombre, descripcion, precio, stock, categoria_id, imagen)
 ('Mouse Gaming Razer', 'Mouse ergonómico para gamers.', 70.00, 18, 9, 'imagenes/mouse_razer.jpg'),
 ('Auriculares Bose', 'Auriculares inalámbricos con cancelación de ruido.', 300.00, 12, 10, 'imagenes/auriculares_bose.jpg');
 
-INSERT INTO Pedidos (id_usuario, estado) VALUES
-(1, 'pendiente'),
-(2, 'completado'),
-(3, 'cancelado'),
-(4, 'pendiente'),
-(5, 'completado'),
-(6, 'pendiente'),
-(7, 'cancelado'),
-(8, 'completado'),
-(9, 'pendiente'),
-(10, 'completado');
+INSERT INTO Pedidos (id_cliente, venta_id, estado, descripcion) VALUES
+(1, 1, 'pendiente', 'Pedido en preparación'),
+(2, 2, 'completado', 'Pedido entregado al cliente'),
+(3, 3, 'pendiente', 'Esperando confirmación'),
+(4, 4, 'completado', 'Pedido finalizado y entregado'),
+(5, 5, 'cancelado', 'Pedido cancelado por el cliente'),
+(6, 6, 'pendiente', 'Pedido pendiente de pago');
 
-INSERT INTO Equipos (nombre, descripcion, precio, stock, imagen) VALUES
-('Laptop Lenovo ThinkPad', 'Laptop robusta y confiable.', 1100.00, 8, 'imagenes/lenovo_thinkpad.jpg'),
-('PC Gaming Alienware', 'Computadora de escritorio para gamers.', 2500.00, 3, 'imagenes/alienware_pc.jpg'),
-('Impresora HP LaserJet', 'Impresora láser para oficina.', 200.00, 10, 'imagenes/hp_laserjet.jpg'),
-('Proyector Epson', 'Proyector de alta definición.', 500.00, 4, 'imagenes/proyector_epson.jpg'),
-('Tablet Samsung Galaxy', 'Tablet versátil y potente.', 600.00, 15, 'imagenes/tablet_samsung.jpg'),
-('Mochila para Laptop', 'Mochila con compartimentos para laptops.', 50.00, 20, 'imagenes/mochila_laptop.jpg'),
-('Almacenamiento Externo Seagate', 'Disco duro externo de 2TB.', 100.00, 30, 'imagenes/disco_externo_seagate.jpg'),
-('Webcam Logitech', 'Webcam HD para videoconferencias.', 80.00, 18, 'imagenes/webcam_logitech.jpg'),
-('Altavoces JBL', 'Altavoces Bluetooth portátiles.', 120.00, 12, 'imagenes/altavoces_jbl.jpg'),
-('Silla Ergonómica', 'Silla para oficina con soporte lumbar.', 150.00, 5, 'imagenes/silla_ergonomica.jpg');
+INSERT INTO Detalles_Pedido (id_pedido, id_producto, cantidad) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 1),
+(4, 4, 3),
+(5, 5, 1),
+(6, 6, 2);
+
+INSERT INTO Equipos (nombre, descripcion, estado, Empleados_id) VALUES
+('Equipo A', 'Equipo de soporte técnico', 'disponible', 1),
+('Equipo B', 'Equipo de ventas', 'en uso', 2),
+('Equipo C', 'Equipo de marketing', 'disponible', 3),
+('Equipo D', 'Equipo de administración', 'fuera de servicio', 4),
+('Equipo E', 'Equipo de desarrollo', 'en uso', 5),
+('Equipo F', 'Equipo de logística', 'disponible', 6);
+
+INSERT INTO pagos (id_venta, metodo_pago, tipo_tarjeta, numero_cuenta, monto, estado_pago) VALUES
+(1, 'tarjeta', 'VISA', '1234-5678-9101', 1500.00, 'completado'),
+(2, 'paypal', NULL, 'paypal_account@example.com', 1800.00, 'pendiente'),
+(3, 'tarjeta', 'MasterCard', '2345-6789-1234', 400.00, 'completado'),
+(4, 'tarjeta', 'VISA', '3456-7890-2345', 150.00, 'completado'),
+(5, 'paypal', NULL, 'paypal_account2@example.com', 800.00, 'pendiente'),
+(6, 'tarjeta', 'American Express', '4567-8901-3456', 240.00, 'fallido');
+
+INSERT INTO Entregas (id_venta, metodo_entrega, fecha_entrega, hora_entrega, tipo_envio) VALUES
+(1, 'Envío a domicilio', '2024-11-10', '14:30:00', 'express'),
+(2, 'Recogida en tienda', '2024-11-11', '10:00:00', 'estándar'),
+(3, 'Envío a domicilio', '2024-11-12', '16:00:00', 'express'),
+(4, 'Recogida en tienda', '2024-11-13', '09:30:00', 'estándar'),
+(5, 'Envío a domicilio', '2024-11-14', '11:00:00', 'standard'),
+(6, 'Recogida en tienda', '2024-11-15', '13:00:00', 'express');

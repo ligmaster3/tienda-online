@@ -1,14 +1,21 @@
 <?php
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['index'])) {
-    $index = $_POST['index'];
+// Verificar si el ID del producto está establecido
+if (isset($_POST['id'])) {
+    $id_producto = $_POST['id'];
 
-    if (isset($_SESSION['carrito'][$index])) {
-        unset($_SESSION['carrito'][$index]);
-        $_SESSION['carrito'] = array_values($_SESSION['carrito']); // Reindexar el array
+    // Recorrer el carrito y eliminar el producto con el ID especificado
+    foreach ($_SESSION['carrito'] as $indice => $producto) {
+        if ($producto['id'] == $id_producto) {
+            unset($_SESSION['carrito'][$indice]); // Eliminar producto del carrito
+            $_SESSION['carrito'] = array_values($_SESSION['carrito']); // Reindexar el carrito
+            break;
+        }
     }
 }
 
-header('Location: carrito.php');
-exit();
+// Redirigir de nuevo a la página del carrito
+header("Location: /carrito.php");
+exit;
+?>

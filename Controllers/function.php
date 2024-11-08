@@ -132,6 +132,24 @@ function contarProductosCarrito() {
 
 $totalProductosCarrito = contarProductosCarrito();
 
+// Verificar si se hizo clic en el botón "Eliminar"
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Eliminar'])) {
+    eliminarProductoCarrito($_POST['id']);
+}
+
+// Función para eliminar el producto del carrito
+function eliminarProductoCarrito($id_producto) {
+    if (isset($_SESSION['carrito'])) {
+        foreach ($_SESSION['carrito'] as $indice => $producto) {
+            if ($producto['id'] == $id_producto) {
+                unset($_SESSION['carrito'][$indice]); // Eliminar producto del carrito
+                $_SESSION['carrito'] = array_values($_SESSION['carrito']); // Reindexar el carrito
+                break;
+            }
+        }
+    }
+}
+
 // Llamada a las funciones según el botón presionado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     Insertar();

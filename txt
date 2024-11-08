@@ -133,6 +133,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          </div>
      </nav>
  </header>
+ function addToCart() {
+ // Mostrar notificación con Toastify
+ Toastify({
+ text: "Añadido al Carrito",
+ duration: 3500,
+ close: true,
+ gravity: "top", // `top` o `bottom`
+ position: "left", // `left`, `center` o `right`
+ style: {
+ background: "linear-gradient(to right, #85a4ff, #5f94f6, #0538f1)",
+ }
+ }).showToast();
+ // Redirigir después de mostrar el Toast
+ setTimeout(() => {
+ document.getElementById("addCartForm").submit();
+ window.location.href = '/src/public/carrito.php';
+ }, 3500); // Esperar 2.5 segundos antes de redirigir
+ }
 
  <!--  
             <div class="col">

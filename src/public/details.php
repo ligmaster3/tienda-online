@@ -34,28 +34,16 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/assets/img/logo/users-alt (1).png">
-
-    <title>
-        details
-    </title>
-
+    <title> Details Productos</title>
     <link rel="stylesheet" href="/src/css/styles.css">
-    <script src="/src/js/script.js"></script>
-
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
-
-    <script src="/src/js/script.js" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="/src/js/script.js"></script>
 </head>
 
 <body>
@@ -93,7 +81,38 @@ $conn->close();
                 </div>
             </section>
         </div>
+        <!-- Formulario oculto para agregar al carrito -->
+        <form id="addCartForm" action="/Controllers/add_cart.php" method="POST" style="display: none;">
+            <input type="hidden" name="id" value="<?php echo $producto['id_producto']; ?>">
+            <input type="hidden" name="nombre" value="<?php echo htmlspecialchars($producto['nombre']); ?>">
+            <input type="hidden" name="precio" value="<?php echo $producto['precio']; ?>">
+            <input type="hidden" name="descripcion" value="<?php echo htmlspecialchars($producto['descripcion']); ?>">
+            <input type="hidden" name="stock" value="<?php echo $producto['stock']; ?>">
+            <input type="hidden" name="categoria_id" value="<?php echo $producto['categoria_id']; ?>">
+            <input type="hidden" name="imagen" value="<?php echo htmlspecialchars($producto['imagen']); ?>">
+        </form>
     </main>
+
+    <script>
+    function addToCart(id) {
+        // Mostrar Toastify
+        Toastify({
+            text: "Producto añadido al carrito",
+            duration: 2500,
+            close: true,
+            gravity: "top",
+            position: "right",
+            style: {
+                background: "linear-gradient(to right, #85a4ff, #5f94f6, #0538f1)",
+            }
+        }).showToast();
+
+        // Esperar 2.5 segundos y luego enviar el formulario oculto
+        setTimeout(() => {
+            document.getElementById("addCartForm").submit();
+        }, 2500);
+    }
+    </script>
 
     <?php  include 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\Pryecto I.N.A.E - copia\src\components\footer.html';?>
 

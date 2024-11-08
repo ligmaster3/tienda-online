@@ -3,7 +3,6 @@ require 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\Pryect
 
 require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\Pryecto I.N.A.E - copia\config/connection.php';
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +31,6 @@ require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\P
 
 </head>
 
-<?php  include 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\Pryecto I.N.A.E - copia\src\components\header.php';?>
 
 <body class="bg-body-tertiary">
 
@@ -88,7 +86,7 @@ require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\P
             </div>
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Billing address</h4>
-                <form class="needs-validation" novalidate="">
+                <form class="needs-validation" action="/Controllers/orders.php" method=" POST">
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="firstName" class="form-label">First name</label>
@@ -236,7 +234,10 @@ require_once 'C:\Users\eniga\OneDrive\Documentos\Programacion\practicas de php\P
 
                     <hr class="my-4">
 
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+                    <button class="w-100 btn btn-primary btn-lg" id="BtnPagar" type="submit" name="BtnAccion"
+                        value="Pagos">Continue
+                        to
+                        Compra >> </button>
                 </form>
             </div>
         </div>
