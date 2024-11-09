@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include '../config/connection.php';
 
 $error = ''; // Variable para almacenar el mensaje de error
@@ -23,16 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (password_verify($password, $user['contraseña'])) {
                 $_SESSION['usuario_id'] = $user['id'];
                 $_SESSION['nombre'] = $user['nombre'];
+                $_SESSION['correo'] = $user['correo'];
                 $_SESSION['rol'] = $user['rol'];
 
                 header("Location: /src/public/home_product.php");
                 exit();
             } else {
-                echo 'usuario incorrecto';
                 $error = 'Contraseña incorrecta.';
             }
         } else {
-            echo 'Usuario no encontrado.';
             $error = 'Usuario no encontrado.';
         }
         $stmt->close();

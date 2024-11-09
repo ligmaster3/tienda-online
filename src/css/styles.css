@@ -40,14 +40,22 @@ td {
     color: white;
 
 }
+
 .logo {
     display: block;
     margin: 0 auto 20px;
-    width: 100px; /* Tamaño del logo */
+    width: 100px;
+    /* Tamaño del logo */
 }
 
 /* Login Formate */
-.container {
+
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
     color: black;
     background-color: #ffffff;
     padding: 40px;
@@ -57,14 +65,6 @@ td {
     max-width: 500px;
     margin: 0 auto;
     text-align: center;
-}
-
-.login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-
 }
 
 .login .alert {
@@ -93,6 +93,7 @@ td {
 .login form h2 {
     text-align: center;
 }
+
 .Login label {
     font-size: 14px;
     font-weight: bold;
@@ -101,7 +102,7 @@ td {
     margin-bottom: 5px;
 }
 
- 
+
 .login input[type="email"],
 input[type="password"],
 select {
@@ -113,7 +114,7 @@ select {
     outline: none;
     transition: all 0.3s ease;
     margin-bottom: 15px;
-} 
+}
 
 input:focus,
 select:focus {
@@ -150,13 +151,13 @@ label {
 }
 
 @media (width < 600px) {
-   .login .container {
+    .login .container {
         padding: 20px;
     }
 
     .login button {
         padding: 12px;
-   }
+    }
 }
 
 header ul {

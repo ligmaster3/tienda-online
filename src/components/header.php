@@ -1,4 +1,6 @@
 <?php
+
+
 // Supón que el rol está guardado en $_SESSION['rol'] después del inicio de sesión
 $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : 'cliente';
 ?>
@@ -7,7 +9,7 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : 'cliente';
     <nav
         class="navbar navbar-expand-lg bg-primary d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
         <div class="container-fluid mb-2">
-            <!-- Logo -->
+            <!-- Logo y Nombre del sitio -->
             <svg height="40" preserveAspectRatio="xMidYMid" width="40" xmlns="http://www.w3.org/2000/svg"
                 class="logotecno" viewBox="0 0 256 167.509">
                 <path fill="#fff"
@@ -26,10 +28,9 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : 'cliente';
                 <ul
                     class="nav col-12 col-md-auto mb-2 align-items-center justify-content-center justify-content-md-between mb-md-0">
                     <li><a href="/src/public/home_product.php" class="nav-link px-2 linear">Home</a></li>
-                    <li>
 
-                        <?php if ($rol === 'admin'): ?>
-                        <!-- Botones específicos para el rol 'admin' -->
+                    <?php if ($rol === 'admin'): ?>
+                    <!-- Botones específicos para el rol 'admin' -->
                     <li><a href="/src/public/usuarios.php" class="nav-link px-2 linear">Usuarios</a></li>
                     <li><a href="/src/public/reportes.php" class="nav-link px-2 linear">Reportes</a></li>
                     <li><a href="/src/public/ventas.php" class="nav-link px-2 linear">Ventas</a></li>
@@ -46,15 +47,53 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : 'cliente';
                     <li><a href="/src/public/pricing.php" class="nav-link px-2 linear">Pricing</a></li>
                     <li><a href="/src/public/about.php" class="nav-link px-2 linear">About</a></li>
                 </ul>
+
                 <form class="d-flex text-end">
-                    <div class="text-end">
+                    <div class="text-end d-flex">
+                        <!-- Carrito de compras -->
                         <button class="btn btn-outline-dark position-relative text-white mx-3" type="submit">
-                            <i class="fas fa-shopping-cart me-1"></i> <!-- Ícono de carrito de Font Awesome -->
+                            <i class="fas fa-shopping-cart me-1"></i>
                             <a href="./carrito.php" class="text-decoration-none">Cart
                                 <span
                                     class="badge bg-dark text-white ms-1 rounded-pill position-absolute top-50 start-100 translate-middle"
-                                    id="num_cont"><?php echo $totalProductosCarrito; ?></span></a>
+                                    id="num_cont"><?php echo isset($totalProductosCarrito) ? $totalProductosCarrito : 0; ?></span></a>
                         </button>
+
+                        <?php if (isset($_SESSION['usuario_id'])): ?>
+                        <!-- Avatar y Logout si el usuario ha iniciado sesión -->
+                        <div class="nav-item dropdown">
+                            <a class="btn btn-icon dropdown-toggle" id="navbarDropdownUserImage" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img class="rounded-circle" style="width: 40px; height: 40px;"
+                                    src="/assets/img/logo/profile-1.png" alt="User Avatar">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <h6 class="dropdown-header d-flex align-items-center">
+                                    <img class="rounded-circle me-3" style="width: 50px; height: 50px;"
+                                        src="/assets/img/logo/profile-1.png" alt="User Avatar">
+                                    <div>
+                                        <span class="dropdown-user-details-name">
+                                            <?php echo $_SESSION['nombre']; ?>
+                                        </span><br>
+                                        <span class="dropdown-user-details-email">
+                                            <?php echo $_SESSION['correo']; ?>
+                                        </span>
+                                    </div>
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center pl-1" href="/Controllers/logout.php">
+                                    <div class="dropdown-item-icon px-1">
+                                        <i class="fa fa-sign-out-alt"></i>
+                                    </div>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </div>
+                        <?php else: ?>
+                        <!-- Botón de "Iniciar sesión" si el usuario no ha iniciado sesión -->
+                        <li class="nav-link">
+                            <a class="btn btn-light" href="/login/login.php" role="button">Iniciar sesión</a>
+                        </li>
+                        <?php endif; ?>
                     </div>
                 </form>
             </div>
