@@ -1,11 +1,18 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include '../config/connection.php';
 
 $rol = 'cliente'; // Valor predeterminado para $rol cuando no hay sesión
-$nombre = "Invitado";
-$apellido = "";
-$correo = "No disponible";
-$avatar = "/assets/img/logo/profile-1.png"; 
+$nombre_def = "Invitado";
+$apellido_def = "";
+$correo_def = "No disponible";
+$avatar_def = "/assets/img/logo/user-default.png"; 
+$nombre = $nombre_def;
+$apellido = $apellido_def;
+$correo = $correo_def;
+$avatar = $avatar_def;
 
 if (isset($_SESSION['usuario_id'])) {
     $user_id = $_SESSION['usuario_id'];
@@ -17,11 +24,11 @@ if (isset($_SESSION['usuario_id'])) {
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        $nombre = $user['nombre'];
-        $apellido = $user['apellido'];
-        $correo = $user['correo'];
-        $avatar = $user['foto_perfil'];
-        $rol = $user['rol']; // Asigna el rol específico del usuario
+        $nombre = $user['nombre'] ?: $nombre_def;
+        $apellido = $user['apellido'] ?: $apellido_def;
+        $correo = $user['correo'] ?: $correo_def;
+        $avatar = $user['foto_perfil'] ?: $avatar_def;
+        $rol = $user['rol'] ?: $rol; // Asigna el rol específico del usuario
     }
     $stmt->close();
 }
@@ -88,13 +95,14 @@ if (isset($_SESSION['usuario_id'])) {
                             <a class="btn btn-icon dropdown-toggle" id="navbarDropdownUserImage" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <img class="rounded-circle" style="width: 40px; height: 40px;"
-                                    src="<?php echo htmlspecialchars($avatar); ?>" alt="Foto de perfil">
+                                    src="<?php echo $avatar; ?>" alt="Foto de perfil"
+                                    onerror="this.onerror=null; this.src='<?php echo $avatar_def; ?>';">
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <h6 class="dropdown-header d-flex align-items-2center">
-                                    <img class="rounded-circle me-3" style="width: 40px; height: 40px;"
-                                        src="<?php echo htmlspecialchars($user['foto_perfil']); ?>"
-                                        alt="Foto de perfil">
+                                    <img class="rounded-circle" style="width: 40px; height: 40px;"
+                                        src="<?php echo $user['foto_perfil']; ?>" alt="Foto de perfil"
+                                        onerror="this.onerror=null; this.src='<?php echo $avatar_def; ?>';">
                                     <div>
                                         <span class="dropdown-user-details-name">
                                             <?php echo htmlspecialchars($nombre . " " . $apellido); ?>

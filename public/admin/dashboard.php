@@ -29,6 +29,7 @@ $stmt->close();
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -64,7 +65,7 @@ $stmt->close();
 
                             <nav>
                                 <ul>
-                                    <li><a href="/public/admin/dashboard.php"><i class="fas fa-home"></i> Inicio</a>
+                                    <li><a href="/public/home_product.php"><i class="fas fa-home"></i> Inicio</a>
                                     </li>
                                     <li><a href="/public/login/logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar
                                             sesión</a></li>
