@@ -50,17 +50,17 @@ $stmt->close();
                             <p>Bienvenido</p>
 
                             <?php if (!empty($user['foto_perfil'])): ?>
-                            <div class="profile-picture">
-                                <img src="<?php echo htmlspecialchars($user['foto_perfil']); ?>" alt="Foto de perfil"
-                                    class="profile-img">
-                            </div>
-                            <div class="profile-info">
-                                <h2><?php echo htmlspecialchars($user['nombre']) . ' ' . htmlspecialchars($user['apellido']); ?>
-                                </h2>
-                                <p>Rol: <?php echo htmlspecialchars($user['rol']); ?></p>
-                            </div>
+                                <div class="profile-picture">
+                                    <img src="<?php echo htmlspecialchars($user['foto_perfil']); ?>" alt="Foto de perfil"
+                                        class="profile-img">
+                                </div>
+                                <div class="profile-info">
+                                    <h2><?php echo htmlspecialchars($user['nombre']) . ' ' . htmlspecialchars($user['apellido']); ?>
+                                    </h2>
+                                    <p>Rol: <?php echo htmlspecialchars($user['rol']); ?></p>
+                                </div>
                             <?php else: ?>
-                            <p>No se ha establecido una foto de perfil.</p>
+                                <p>No se ha establecido una foto de perfil.</p>
                             <?php endif; ?>
 
                             <nav>
@@ -106,8 +106,50 @@ $stmt->close();
                                 <td><?php echo htmlspecialchars($user['correo']); ?></td>
                                 <td><?php echo htmlspecialchars($user['rol']); ?></td>
                                 <td>
-                                    <a href="edit_user.php?id=<?php echo $user['id']; ?>">Editar</a>
-                                    <a href="delete_user.php?id=<?php echo $user['id']; ?>">Eliminar</a>
+                                    <form action="">
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#editUser">
+                                            Launch demo modal
+                                        </button>
+                                        <!-- <div class="modal" id="editUser" tabindex="-1" aria-labelledby="editModal"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content" style="padding: 1.1rem;">
+                                                    <h5 class="modal-title">Editar</h5>
+                                                    <form action="" method="post">
+                                                        <div class="mb-3">
+                                                            <label for="" class="form-label">Name</label>
+                                                            <input type="text" name="" id="" class="form-control"
+                                                                placeholder="" aria-describedby="helpId" />
+                                                            <!-- <small id="helpId" class="text-muted disable">Help
+                                                                text</small> -
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Name</label>
+                <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId" />
+                <!-- <small id="helpId" class="text-muted disable">Help
+                                                                text</small> 
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Rol</label>
+                <select name="rol" required>
+                    <option value="admin">Administrador</option>
+                    <option value="contador">Contador</option>
+                    <option value="ayudante">Ayudante</option>
+                </select>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+            </form>
+        </div>
+        </div>
+        </div> -->
+                                    </form>
                                 </td>
                             </tr>
                         </tbody>
@@ -117,24 +159,24 @@ $stmt->close();
 
 
                 <?php if ($user['rol'] === 'admin'): ?>
-                <section class="admin-actions">
-                    <h2>Acciones Administrativas</h2>
-                    <a href="pedidos.php" class="button">Ver Pedidos</a>
-                </section>
+                    <section class="admin-actions">
+                        <h2>Acciones Administrativas</h2>
+                        <a href="pedidos.php" class="button">Ver Pedidos</a>
+                    </section>
                 <?php endif; ?>
 
                 <?php if ($user['rol'] === 'contador'): ?>
-                <section class="sales-action">
-                    <h2>Acciones para Contadores</h2>
-                    <a href="ventas.php" class="button">Ver Ventas</a>
-                </section>
+                    <section class="sales-action">
+                        <h2>Acciones para Contadores</h2>
+                        <a href="ventas.php" class="button">Ver Ventas</a>
+                    </section>
                 <?php endif; ?>
 
                 <?php if ($user['rol'] === 'ayudante'): ?>
-                <section class="product-action">
-                    <h2>Acciones para Ayudantes</h2>
-                    <a href="equipos.php" class="button">Ver acciones</a>
-                </section>
+                    <section class="product-action">
+                        <h2>Acciones para Ayudantes</h2>
+                        <a href="equipos.php" class="button">Ver acciones</a>
+                    </section>
                 <?php endif; ?>
 
             </div>
