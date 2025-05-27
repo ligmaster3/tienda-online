@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-require 'C:\Users\eniga\OneDrive\Documentos\tienda online\Controllers/function.php';
+require_once '../config/connection.php';
+require_once '../Controllers/function.php';
 
-require_once 'C:\Users\eniga\OneDrive\Documentos\tienda online\config/connection.php';
 
 
 ?>
@@ -29,7 +29,7 @@ require_once 'C:\Users\eniga\OneDrive\Documentos\tienda online\config/connection
 
 <body>
 
-    <?php include 'C:\Users\eniga\OneDrive\Documentos\tienda online\src\components\header.php'; ?>
+    <?php include '../src/components/header.php'; ?>
 
     <main id="list-carrito">
         <h2 class="shop-title text-center">Tu Carrito</h2>

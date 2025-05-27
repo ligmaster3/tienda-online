@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'C:\Users\eniga\OneDrive\Documentos\tienda online\config\connection.php';
+include '../config/connection.php';
 
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: /public/login/login.php");
@@ -50,17 +50,17 @@ $stmt->close();
                             <p>Bienvenido</p>
 
                             <?php if (!empty($user['foto_perfil'])): ?>
-                                <div class="profile-picture">
-                                    <img src="<?php echo htmlspecialchars($user['foto_perfil']); ?>" alt="Foto de perfil"
-                                        class="profile-img">
-                                </div>
-                                <div class="profile-info">
-                                    <h2><?php echo htmlspecialchars($user['nombre']) . ' ' . htmlspecialchars($user['apellido']); ?>
-                                    </h2>
-                                    <p>Rol: <?php echo htmlspecialchars($user['rol']); ?></p>
-                                </div>
+                            <div class="profile-picture">
+                                <img src="<?php echo htmlspecialchars($user['foto_perfil']); ?>" alt="Foto de perfil"
+                                    class="profile-img">
+                            </div>
+                            <div class="profile-info">
+                                <h2><?php echo htmlspecialchars($user['nombre']) . ' ' . htmlspecialchars($user['apellido']); ?>
+                                </h2>
+                                <p>Rol: <?php echo htmlspecialchars($user['rol']); ?></p>
+                            </div>
                             <?php else: ?>
-                                <p>No se ha establecido una foto de perfil.</p>
+                            <p>No se ha establecido una foto de perfil.</p>
                             <?php endif; ?>
 
                             <nav>
@@ -159,24 +159,24 @@ $stmt->close();
 
 
                 <?php if ($user['rol'] === 'admin'): ?>
-                    <section class="admin-actions">
-                        <h2>Acciones Administrativas</h2>
-                        <a href="pedidos.php" class="button">Ver Pedidos</a>
-                    </section>
+                <section class="admin-actions">
+                    <h2>Acciones Administrativas</h2>
+                    <a href="pedidos.php" class="button">Ver Pedidos</a>
+                </section>
                 <?php endif; ?>
 
                 <?php if ($user['rol'] === 'contador'): ?>
-                    <section class="sales-action">
-                        <h2>Acciones para Contadores</h2>
-                        <a href="ventas.php" class="button">Ver Ventas</a>
-                    </section>
+                <section class="sales-action">
+                    <h2>Acciones para Contadores</h2>
+                    <a href="ventas.php" class="button">Ver Ventas</a>
+                </section>
                 <?php endif; ?>
 
                 <?php if ($user['rol'] === 'ayudante'): ?>
-                    <section class="product-action">
-                        <h2>Acciones para Ayudantes</h2>
-                        <a href="equipos.php" class="button">Ver acciones</a>
-                    </section>
+                <section class="product-action">
+                    <h2>Acciones para Ayudantes</h2>
+                    <a href="equipos.php" class="button">Ver acciones</a>
+                </section>
                 <?php endif; ?>
 
             </div>

@@ -1,8 +1,7 @@
 <?php 
-require 'C:\Users\eniga\OneDrive\Documentos\tienda online\Controllers/function.php';
 
-require_once 'C:\Users\eniga\OneDrive\Documentos\tienda online\config/connection.php';
-
+require_once '../config/connection.php';
+require_once '../Controllers/function.php';
 
 ?>
 <!DOCTYPE html>

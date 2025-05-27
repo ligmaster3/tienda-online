@@ -1,7 +1,10 @@
 <?php
 
 session_start();
-include '../config/connection.php';
+
+require_once '../config/connection.php';
+require_once '../Controllers/function.php';
+
 
 if (!isset($_SESSION['carrito'])) {
     $_SESSION['carrito'] = array();

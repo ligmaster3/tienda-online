@@ -1,26 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.9.1
--- https://www.phpmyadmin.net/
---
--- Servidor: localhost
--- Tiempo de generación: 12-11-2024 a las 21:31:53
--- Versión del servidor: 8.0.17
--- Versión de PHP: 7.3.10
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `comercio_electronico`
---
+-- MySQL dump 10.13  Distrib 5.7.34, for Win64 (x86_64) 
 
 -- --------------------------------------------------------
 
@@ -33,7 +11,7 @@ CREATE TABLE `categorias` (
   `nombre` varchar(255) NOT NULL,
   `descripcion` text,
   `imagen` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Volcado de datos para la tabla `categorias`
@@ -61,7 +39,7 @@ CREATE TABLE `clientes` (
   `telefono` varchar(20) DEFAULT NULL,
   `direccion` text,
   `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Volcado de datos para la tabla `clientes`
@@ -88,7 +66,7 @@ CREATE TABLE `detalles_pedido` (
   `id_pedido` int(11) DEFAULT NULL,
   `id_producto` int(11) DEFAULT NULL,
   `cantidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Volcado de datos para la tabla `detalles_pedido`
@@ -116,7 +94,7 @@ CREATE TABLE `empleados` (
   `apellido` varchar(255) NOT NULL,
   `puesto` varchar(255) NOT NULL,
   `usuario_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Volcado de datos para la tabla `empleados`
@@ -143,7 +121,7 @@ CREATE TABLE `entregas` (
   `fecha_entrega` date NOT NULL,
   `hora_entrega` time NOT NULL,
   `tipo_envio` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Volcado de datos para la tabla `entregas`
@@ -171,7 +149,7 @@ CREATE TABLE `equipos` (
   `descripcion` text,
   `estado` enum('disponible','en uso','fuera de servicio') NOT NULL,
   `Empleados_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Volcado de datos para la tabla `equipos`
@@ -200,7 +178,7 @@ CREATE TABLE `pagos` (
   `fecha_pago` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `monto` decimal(10,2) NOT NULL,
   `estado_pago` enum('completado','pendiente','fallido') DEFAULT 'pendiente'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Volcado de datos para la tabla `pagos`
@@ -228,7 +206,7 @@ CREATE TABLE `pedidos` (
   `venta_id` int(11) DEFAULT NULL,
   `fecha` datetime DEFAULT CURRENT_TIMESTAMP,
   `estado` enum('pendiente','completado','cancelado') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Volcado de datos para la tabla `pedidos`
@@ -259,7 +237,7 @@ CREATE TABLE `productos` (
   `categoria_id` int(11) DEFAULT NULL,
   `imagen` varchar(255) DEFAULT NULL,
   `descripcion_larga` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Volcado de datos para la tabla `productos`
@@ -316,7 +294,7 @@ CREATE TABLE `usuarios` (
   `contraseña` varchar(255) NOT NULL,
   `rol` enum('admin','contador','ayudante') NOT NULL,
   `foto_perfil` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -343,7 +321,7 @@ CREATE TABLE `ventas` (
   `cantidad` int(11) NOT NULL,
   `precio_total` decimal(10,2) NOT NULL,
   `fecha` datetime DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Volcado de datos para la tabla `ventas`

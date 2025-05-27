@@ -2,6 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
 include '../config/connection.php';
 
 $rol = 'cliente'; // Valor predeterminado para $rol cuando no hay sesión

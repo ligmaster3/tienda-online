@@ -1,6 +1,8 @@
 <?php 
-require 'C:\Users\eniga\OneDrive\Documentos\tienda online\Controllers/function.php';
-require_once 'C:\Users\eniga\OneDrive\Documentos\tienda online\config/connection.php';
+
+require_once '../config/connection.php';
+require_once '../Controllers/function.php';
+
 session_start();
 // Obtenemos el ID del producto desde la URL
 $id_producto = isset($_GET['id']) ? intval($_GET['id']) : null;
@@ -60,8 +62,7 @@ $conn->close();
 
 <body>
 
-    <?php  include 'C:\Users\eniga\OneDrive\Documentos\tienda online\src\components\header.php';?>
-
+    <?php include '../src/components/header.php'; ?>
     <main id="details" class="details-content">
         <div class="container">
             <!-- Product section-->

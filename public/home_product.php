@@ -1,6 +1,8 @@
 <?php
-require '../Controllers/function.php';
+
 require_once '../config/connection.php';
+require_once '../Controllers/function.php';
+
 
 
 if (session_status() === PHP_SESSION_NONE) {
