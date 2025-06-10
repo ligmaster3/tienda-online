@@ -1,4 +1,4 @@
-# Proyecto-Final-Universidad-Autonoma-de-Chiriqui
+#Proyecto-Final-Universidad-Autonoma-de-Chiriqui
  
 # tienda-online"
 Proyecto de base de datos relacional para la gestión de una tienda en línea, desarrollado como parte del curso [Base de Datos].
@@ -38,6 +38,9 @@ En NAEI MARKET, democratizamos la tecnología ofreciendo productos innovadores y
 
 Soñamos con ser tu aliado tecnológico de confianza, donde encuentres más que productos: soluciones que transformen tu vida. Nos eligen por nuestra amplia variedad, transparencia absoluta y el trato humano que nos diferencia. Queremos que cada experiencia con nosotros sea fácil, personalizada y llena de posibilidades. En NAEI, creemos en innovar con propósito y conectar con el corazón. Construimos un futuro digital más inclusivo y sostenible. 
 
+# FODA
+
+# CANVA 
 
 # cual seria la ventaja competitiva de su proyecto virtual o negocio digital
 
