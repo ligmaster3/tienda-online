@@ -14,6 +14,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $pdo->beginTransaction();
 
+        // Verificar stock antes de procesar la compra
+        foreach ($_SESSION['carrito'] as $item) {
+            $stmt = $pdo->prepare("SELECT stock FROM productos WHERE id = ?");
+            $stmt->execute([$item['id']]);
+            $stock_actual = $stmt->fetchColumn();
+
+            if ($stock_actual < $item['cantidad']) {
+                throw new Exception("Stock insuficiente para el producto: " . $item['nombre']);
+            }
+        }
+
         // Insertar cliente
         $stmt = $pdo->prepare("INSERT INTO Clientes (nombre, email, telefono, direccion) 
                               VALUES (:nombre, :email, :telefono, :direccion)");
@@ -32,8 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Insertar venta
-        $stmt = $pdo->prepare("INSERT INTO Ventas (cliente_id, id_producto, cantidad, precio_total) 
-                              VALUES (:cliente_id, :id_producto, :cantidad, :precio_total)");
+        $stmt = $pdo->prepare("INSERT INTO Ventas (cliente_id, id_producto, cantidad, precio_total, fecha) 
+                              VALUES (:cliente_id, :id_producto, :cantidad, :precio_total, NOW())");
         $stmt->execute([
             ':cliente_id' => $cliente_id,
             ':id_producto' => array_values($_SESSION['carrito'])[0]['id'],
@@ -43,8 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $venta_id = $pdo->lastInsertId();
 
         // Insertar pedido
-        $stmt = $pdo->prepare("INSERT INTO Pedidos (id_cliente, venta_id, estado) 
-                              VALUES (:cliente_id, :venta_id, 'pendiente')");
+        $stmt = $pdo->prepare("INSERT INTO Pedidos (id_cliente, venta_id, estado, fecha_pedido) 
+                              VALUES (:cliente_id, :venta_id, 'pendiente', NOW())");
         $stmt->execute([
             ':cliente_id' => $cliente_id,
             ':venta_id' => $venta_id
@@ -52,13 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pedido_id = $pdo->lastInsertId();
 
         // Insertar detalles del pedido
-        $stmt = $pdo->prepare("INSERT INTO Detalles_Pedido (id_pedido, id_producto, cantidad) 
-                              VALUES (:id_pedido, :id_producto, :cantidad)");
+        $stmt = $pdo->prepare("INSERT INTO Detalles_Pedido (id_pedido, id_producto, cantidad, precio_unitario) 
+                              VALUES (:id_pedido, :id_producto, :cantidad, :precio)");
         foreach ($_SESSION['carrito'] as $item) {
             $stmt->execute([
                 ':id_pedido' => $pedido_id,
                 ':id_producto' => $item['id'],
-                ':cantidad' => $item['cantidad']
+                ':cantidad' => $item['cantidad'],
+                ':precio' => $item['precio']
             ]);
         }
 
@@ -67,24 +79,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tipo_tarjeta = '';
 
         if ($metodo_pago === 'paypal') {
-            $tipo_tarjeta = $_POST['tipo_paypal']; 
+            $tipo_tarjeta = $_POST['tipo_paypal'];
         } else {
             $tipo_tarjeta = $_POST['tipo_tarjeta'];
         }
 
-        $stmt = $pdo->prepare("INSERT INTO pagos (id_venta, metodo_pago, tipo_tarjeta, numero_cuenta, monto) 
-                              VALUES (:id_venta, :metodo_pago, :tipo_tarjeta, :numero_cuenta, :monto)");
+        $stmt = $pdo->prepare("INSERT INTO pagos (id_venta, metodo_pago, tipo_tarjeta, numero_cuenta, monto, estado_pago, fecha_pago) 
+                              VALUES (:id_venta, :metodo_pago, :tipo_tarjeta, :numero_cuenta, :monto, 'pendiente', NOW())");
         $stmt->execute([
             ':id_venta' => $venta_id,
             ':metodo_pago' => $metodo_pago,
-            ':tipo_tarjeta' => $tipo_tarjeta, 
+            ':tipo_tarjeta' => $tipo_tarjeta,
             ':numero_cuenta' => $_POST['numero_cuenta'],
             ':monto' => $total
         ]);
 
         // Insertar detalles de entrega
-        $stmt = $pdo->prepare("INSERT INTO Entregas (id_venta, metodo_entrega, fecha_entrega, hora_entrega, tipo_envio) 
-                              VALUES (:id_venta, :metodo_entrega, :fecha_entrega, :hora_entrega, :tipo_envio)");
+        $stmt = $pdo->prepare("INSERT INTO Entregas (id_venta, metodo_entrega, fecha_entrega, hora_entrega, tipo_envio, estado_entrega) 
+                              VALUES (:id_venta, :metodo_entrega, :fecha_entrega, :hora_entrega, :tipo_envio, 'pendiente')");
         $stmt->execute([
             ':id_venta' => $venta_id,
             ':metodo_entrega' => $_POST['metodo_entrega'],
@@ -106,11 +118,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Vaciar el carrito y redirigir al usuario
         unset($_SESSION['carrito']);
-        header('Location: /public/home_product.php?true=Pago confirmado');
+        header('Location: /public/home_product.php?success=compra_exitosa');
         exit;
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         $pdo->rollBack();
-        echo "Error: " . $e->getMessage();
+        header('Location: /public/carrito.php?error=' . urlencode($e->getMessage()));
+        exit;
     }
 }
-?>
