@@ -15,6 +15,9 @@ function NotificacionEliminar() {
 function addToCart(event) {
   event.preventDefault();
 
+  // Mostrar el spinner
+  showSpinner();
+
   Toastify({
       text: "Producto añadido al carrito",
       duration: 2500,
@@ -27,8 +30,26 @@ function addToCart(event) {
   }).showToast();
 
   setTimeout(() => {
+      hideSpinner();
       event.target.submit();
   }, 2500);
+
+  return false;
+}
+
+function showSpinner() {
+  const spinner = document.createElement('div');
+  spinner.id = 'spinnerOverlay';
+  spinner.className = 'spinner-overlay';
+  spinner.innerHTML = '<div class="spinner"></div>';
+  document.body.appendChild(spinner);
+}
+
+function hideSpinner() {
+  const spinner = document.getElementById('spinnerOverlay');
+  if (spinner) {
+      spinner.remove();
+  }
 }
 
 function confirmarVaciadoCarrito() {

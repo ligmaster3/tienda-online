@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- phpMyAdmin SQL Dump
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
@@ -27,6 +28,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `comercio_electronico`
 --
+=======
+-- MySQL dump 10.13  Distrib 5.7.34, for Win64 (x86_64) 
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 
 -- --------------------------------------------------------
 
@@ -35,11 +39,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categorias` (
+<<<<<<< HEAD
     `id` int(11) NOT NULL,
     `nombre` varchar(255) NOT NULL,
     `descripcion` text,
     `imagen` varchar(255) DEFAULT NULL
 );
+=======
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `descripcion` text,
+  `imagen` varchar(255) DEFAULT NULL
+) ;
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 
 --
 -- Volcado de datos para la tabla `categorias`
@@ -102,6 +114,7 @@ VALUES (
 --
 
 CREATE TABLE `clientes` (
+<<<<<<< HEAD
     `id_cliente` int(11) NOT NULL,
     `nombre` varchar(100) NOT NULL,
     `email` varchar(100) NOT NULL,
@@ -109,6 +122,15 @@ CREATE TABLE `clientes` (
     `direccion` text,
     `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 );
+=======
+  `id_cliente` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `direccion` text,
+  `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ;
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 
 --
 -- Volcado de datos para la tabla `clientes`
@@ -195,11 +217,19 @@ VALUES (
 --
 
 CREATE TABLE `detalles_pedido` (
+<<<<<<< HEAD
     `id` int(11) NOT NULL,
     `id_pedido` int(11) DEFAULT NULL,
     `id_producto` int(11) DEFAULT NULL,
     `cantidad` int(11) NOT NULL
 );
+=======
+  `id` int(11) NOT NULL,
+  `id_pedido` int(11) DEFAULT NULL,
+  `id_producto` int(11) DEFAULT NULL,
+  `cantidad` int(11) NOT NULL
+) ;
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 
 --
 -- Volcado de datos para la tabla `detalles_pedido`
@@ -228,12 +258,21 @@ VALUES (1, 1, 1, 1),
 --
 
 CREATE TABLE `empleados` (
+<<<<<<< HEAD
     `id` int(11) NOT NULL,
     `nombre` varchar(255) NOT NULL,
     `apellido` varchar(255) NOT NULL,
     `puesto` varchar(255) NOT NULL,
     `usuario_id` int(11) DEFAULT NULL
 );
+=======
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `apellido` varchar(255) NOT NULL,
+  `puesto` varchar(255) NOT NULL,
+  `usuario_id` int(11) DEFAULT NULL
+) ;
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 
 --
 -- Volcado de datos para la tabla `empleados`
@@ -297,6 +336,7 @@ VALUES (
 --
 
 CREATE TABLE `entregas` (
+<<<<<<< HEAD
     `id_entrega` int(11) NOT NULL,
     `id_venta` int(11) NOT NULL,
     `metodo_entrega` varchar(100) NOT NULL,
@@ -304,6 +344,15 @@ CREATE TABLE `entregas` (
     `hora_entrega` time NOT NULL,
     `tipo_envio` varchar(50) NOT NULL
 );
+=======
+  `id_entrega` int(11) NOT NULL,
+  `id_venta` int(11) NOT NULL,
+  `metodo_entrega` varchar(100) NOT NULL,
+  `fecha_entrega` date NOT NULL,
+  `hora_entrega` time NOT NULL,
+  `tipo_envio` varchar(50) NOT NULL
+) ;
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 
 --
 -- Volcado de datos para la tabla `entregas`
@@ -390,6 +439,7 @@ VALUES (
 --
 
 CREATE TABLE `equipos` (
+<<<<<<< HEAD
     `id` int(11) NOT NULL,
     `nombre` varchar(255) NOT NULL,
     `descripcion` text,
@@ -400,6 +450,14 @@ CREATE TABLE `equipos` (
     ) NOT NULL,
     `Empleados_id` int(11) DEFAULT NULL
 );
+=======
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `descripcion` text,
+  `estado` enum('disponible','en uso','fuera de servicio') NOT NULL,
+  `Empleados_id` int(11) DEFAULT NULL
+) ;
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 
 --
 -- Volcado de datos para la tabla `equipos`
@@ -463,6 +521,7 @@ VALUES (
 --
 
 CREATE TABLE `pagos` (
+<<<<<<< HEAD
     `id_pago` int(11) NOT NULL,
     `id_venta` int(11) NOT NULL,
     `metodo_pago` enum('tarjeta', 'paypal') NOT NULL,
@@ -476,6 +535,17 @@ CREATE TABLE `pagos` (
         'fallido'
     ) DEFAULT 'pendiente'
 );
+=======
+  `id_pago` int(11) NOT NULL,
+  `id_venta` int(11) NOT NULL,
+  `metodo_pago` enum('tarjeta','paypal') NOT NULL,
+  `tipo_tarjeta` varchar(50) DEFAULT NULL,
+  `numero_cuenta` varchar(100) NOT NULL,
+  `fecha_pago` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `monto` decimal(10,2) NOT NULL,
+  `estado_pago` enum('completado','pendiente','fallido') DEFAULT 'pendiente'
+) ;
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 
 --
 -- Volcado de datos para la tabla `pagos`
@@ -580,6 +650,7 @@ VALUES (
 --
 
 CREATE TABLE `pedidos` (
+<<<<<<< HEAD
     `id_pedido` int(11) NOT NULL,
     `id_cliente` int(11) DEFAULT NULL,
     `venta_id` int(11) DEFAULT NULL,
@@ -590,6 +661,14 @@ CREATE TABLE `pedidos` (
         'cancelado'
     ) NOT NULL
 );
+=======
+  `id_pedido` int(11) NOT NULL,
+  `id_cliente` int(11) DEFAULT NULL,
+  `venta_id` int(11) DEFAULT NULL,
+  `fecha` datetime DEFAULT CURRENT_TIMESTAMP,
+  `estado` enum('pendiente','completado','cancelado') NOT NULL
+) ;
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 
 --
 -- Volcado de datos para la tabla `pedidos`
@@ -667,6 +746,7 @@ VALUES (
 --
 
 CREATE TABLE `productos` (
+<<<<<<< HEAD
     `id` int(11) NOT NULL,
     `nombre` varchar(255) NOT NULL,
     `descripcion` text,
@@ -676,6 +756,17 @@ CREATE TABLE `productos` (
     `imagen` varchar(255) DEFAULT NULL,
     `descripcion_larga` text
 );
+=======
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `descripcion` text,
+  `precio` decimal(10,2) NOT NULL,
+  `stock` int(11) NOT NULL,
+  `categoria_id` int(11) DEFAULT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
+  `descripcion_larga` text
+) ;
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 
 --
 -- Volcado de datos para la tabla `productos`
@@ -1050,6 +1141,7 @@ VALUES (
 --
 
 CREATE TABLE `usuarios` (
+<<<<<<< HEAD
     `id` int(11) NOT NULL,
     `nombre` varchar(255) NOT NULL,
     `apellido` varchar(255) NOT NULL,
@@ -1062,6 +1154,16 @@ CREATE TABLE `usuarios` (
     ) NOT NULL,
     `foto_perfil` varchar(255) DEFAULT NULL
 );
+=======
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `apellido` varchar(255) NOT NULL,
+  `correo` varchar(255) NOT NULL,
+  `contraseña` varchar(255) NOT NULL,
+  `rol` enum('admin','contador','ayudante') NOT NULL,
+  `foto_perfil` varchar(255) DEFAULT NULL
+) ;
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -1139,6 +1241,7 @@ VALUES (
 --
 
 CREATE TABLE `ventas` (
+<<<<<<< HEAD
     `id` int(11) NOT NULL,
     `cliente_id` int(11) DEFAULT NULL,
     `id_producto` int(11) DEFAULT NULL,
@@ -1146,6 +1249,15 @@ CREATE TABLE `ventas` (
     `precio_total` decimal(10, 2) NOT NULL,
     `fecha` datetime DEFAULT CURRENT_TIMESTAMP
 );
+=======
+  `id` int(11) NOT NULL,
+  `cliente_id` int(11) DEFAULT NULL,
+  `id_producto` int(11) DEFAULT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio_total` decimal(10,2) NOT NULL,
+  `fecha` datetime DEFAULT CURRENT_TIMESTAMP
+) ;
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 
 --
 -- Volcado de datos para la tabla `ventas`

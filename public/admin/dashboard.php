@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'C:\Users\eniga\OneDrive\Documentos\tienda online\config\connection.php';
+include '../config/connection.php';
 
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: /public/login/login.php");
@@ -29,6 +29,7 @@ $stmt->close();
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -64,7 +65,7 @@ $stmt->close();
 
                             <nav>
                                 <ul>
-                                    <li><a href="/public/admin/dashboard.php"><i class="fas fa-home"></i> Inicio</a>
+                                    <li><a href="/public/home_product.php"><i class="fas fa-home"></i> Inicio</a>
                                     </li>
                                     <li><a href="/public/login/logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar
                                             sesión</a></li>
@@ -105,8 +106,50 @@ $stmt->close();
                                 <td><?php echo htmlspecialchars($user['correo']); ?></td>
                                 <td><?php echo htmlspecialchars($user['rol']); ?></td>
                                 <td>
-                                    <a href="edit_user.php?id=<?php echo $user['id']; ?>">Editar</a>
-                                    <a href="delete_user.php?id=<?php echo $user['id']; ?>">Eliminar</a>
+                                    <form action="">
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#editUser">
+                                            Launch demo modal
+                                        </button>
+                                        <!-- <div class="modal" id="editUser" tabindex="-1" aria-labelledby="editModal"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content" style="padding: 1.1rem;">
+                                                    <h5 class="modal-title">Editar</h5>
+                                                    <form action="" method="post">
+                                                        <div class="mb-3">
+                                                            <label for="" class="form-label">Name</label>
+                                                            <input type="text" name="" id="" class="form-control"
+                                                                placeholder="" aria-describedby="helpId" />
+                                                            <!-- <small id="helpId" class="text-muted disable">Help
+                                                                text</small> -
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Name</label>
+                <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId" />
+                <!-- <small id="helpId" class="text-muted disable">Help
+                                                                text</small> 
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Rol</label>
+                <select name="rol" required>
+                    <option value="admin">Administrador</option>
+                    <option value="contador">Contador</option>
+                    <option value="ayudante">Ayudante</option>
+                </select>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+            </form>
+        </div>
+        </div>
+        </div> -->
+                                    </form>
                                 </td>
                             </tr>
                         </tbody>

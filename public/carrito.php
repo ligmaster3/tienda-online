@@ -1,8 +1,16 @@
 <?php
 session_start();
 
+<<<<<<< HEAD
 require_once '../Controllers/function.php';
 require_once '../config/connection.php';
+=======
+require_once '../config/connection.php';
+require_once '../Controllers/function.php';
+
+
+
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +24,7 @@ require_once '../config/connection.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
@@ -251,6 +260,10 @@ require_once '../config/connection.php';
     </div>
 
     <?php include '../src/components/header.php'; ?>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
     <main id="list-carrito">
         <h2 class="shop-title text-center">Tu Carrito</h2>
         <div class="container list-carrito-product" id="shop-list">

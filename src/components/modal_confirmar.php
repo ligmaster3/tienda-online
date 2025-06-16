@@ -19,7 +19,7 @@
 
 <!-- Modal de Error de Sesión al carrito -->
 <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5 text-danger" id="errorModalLabel">Error</h1>
@@ -34,6 +34,18 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal de Loader product -->
+<div class="modal fade" id="loaderModal" tabindex="-1" aria-labelledby="loaderModal" aria-hidden="true"
+    style="background-color:rgba(0, 0, 0, 0.2) ;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <span class="loader"></span>
+        </div>
+    </div>
+</div>
+
 
 <!-- Modal de Confirmación de Compra -->
 <div class="modal fade" id="confirCompra" tabindex="-2" aria-labelledby="confirModallabel" aria-hidden="true">

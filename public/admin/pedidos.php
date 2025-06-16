@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'C:\Users\eniga\OneDrive\Documentos\tienda online\config\connection.php';
+require_once '../config/connection.php';
 
 
 if (!isset($_SESSION['usuario_id'])) {

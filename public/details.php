@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 <?php
 require_once '../Controllers/function.php';
 require_once '../config/connection.php';
+=======
+<?php 
+
+require_once '../config/connection.php';
+require_once '../Controllers/function.php';
+
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 session_start();
 // Obtenemos el ID del producto desde la URL
 $id_producto = isset($_GET['id']) ? intval($_GET['id']) : null;
@@ -50,6 +58,7 @@ $conn->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
@@ -262,7 +271,10 @@ $conn->close();
     </div>
 
     <?php include '../src/components/header.php'; ?>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
     <main id="details" class="details-content">
         <div class="container">
             <section class="py-5">

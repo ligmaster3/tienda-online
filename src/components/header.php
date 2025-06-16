@@ -1,11 +1,26 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 include '../config/connection.php';
 
 $rol = 'cliente'; // Valor predeterminado para $rol cuando no hay sesión
+<<<<<<< HEAD
 $nombre = "Invitado";
 $apellido = "";
 $correo = "No disponible";
 $avatar = "/assets/img/logo/profile-1.png";
+=======
+$nombre_def = "Invitado";
+$apellido_def = "";
+$correo_def = "No disponible";
+$avatar_def = "/assets/img/logo/user-default.png"; 
+$nombre = $nombre_def;
+$apellido = $apellido_def;
+$correo = $correo_def;
+$avatar = $avatar_def;
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
 
 if (isset($_SESSION['usuario_id'])) {
     $user_id = $_SESSION['usuario_id'];
@@ -17,11 +32,11 @@ if (isset($_SESSION['usuario_id'])) {
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        $nombre = $user['nombre'];
-        $apellido = $user['apellido'];
-        $correo = $user['correo'];
-        $avatar = $user['foto_perfil'];
-        $rol = $user['rol']; // Asigna el rol específico del usuario
+        $nombre = $user['nombre'] ?: $nombre_def;
+        $apellido = $user['apellido'] ?: $apellido_def;
+        $correo = $user['correo'] ?: $correo_def;
+        $avatar = $user['foto_perfil'] ?: $avatar_def;
+        $rol = $user['rol'] ?: $rol; // Asigna el rol específico del usuario
     }
     $stmt->close();
 }
@@ -99,6 +114,7 @@ if (isset($_SESSION['usuario_id'])) {
                         <div class="nav-item dropdown" title="Mi cuenta">
                             <a class="btn btn-icon dropdown-toggle text-white" id="navbarDropdownUserImage" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
+<<<<<<< HEAD
                                 <img class="rounded-circle border border-2 border-white" style="width: 40px; height: 40px; object-fit: cover;"
                                     src="<?php echo htmlspecialchars($avatar); ?>" alt="Foto de perfil">
                             </a>
@@ -107,6 +123,17 @@ if (isset($_SESSION['usuario_id'])) {
                                     <img class="rounded-circle me-3 border border-2" style="width: 40px; height: 40px; object-fit: cover;"
                                         src="<?php echo htmlspecialchars($user['foto_perfil']); ?>"
                                         alt="Foto de perfil">
+=======
+                                <img class="rounded-circle" style="width: 40px; height: 40px;"
+                                    src="<?php echo $avatar; ?>" alt="Foto de perfil"
+                                    onerror="this.onerror=null; this.src='<?php echo $avatar_def; ?>';">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <h6 class="dropdown-header d-flex align-items-2center">
+                                    <img class="rounded-circle" style="width: 40px; height: 40px;"
+                                        src="<?php echo $user['foto_perfil']; ?>" alt="Foto de perfil"
+                                        onerror="this.onerror=null; this.src='<?php echo $avatar_def; ?>';">
+>>>>>>> 8eea126fae51611818b49b2f48146df699d3ba06
                                     <div>
                                         <span class="dropdown-user-details-name fw-bold">
                                             <?php echo htmlspecialchars($nombre . " " . $apellido); ?>
