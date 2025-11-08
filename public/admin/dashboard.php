@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config/connection.php';
+include_once '../../config/connection.php';
 
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: /public/login/login.php");

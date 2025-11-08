@@ -4,7 +4,7 @@
 Proyecto de base de datos relacional para la gestión de una tienda en línea, desarrollado como parte del curso [Base de Datos].
 
 # Descripcion
- Como parte del desarrollo de competencias en gestión de bases de datos,
+Como parte del desarrollo de competencias en gestión de bases de datos,
 hemos creado el proyecto NAEI Market , una simulación de empresa que
 refleja los principios de diseño, implementación y administración de
 sistemas de información en el ámbito del comercio electrónico. Este
@@ -17,6 +17,16 @@ Diseñar e implementar un sistema de gestión de bases de datos para
 NAEI Market , enfocado en la administración de productos tecnológicos,
 clientes y ventas, garantizando seguridad y eficiencia. 
 
+# Objetivos en Ganancia, Crecimiento y Rentabilidad
+
+**Objetivo en Ganancia:**  
+Maximizar los ingresos netos mediante la optimización de los márgenes de venta y la reducción de costos operativos, asegurando la sostenibilidad financiera del negocio.
+
+**Objetivo en Crecimiento:**  
+Expandir la base de clientes y aumentar la presencia en el mercado nacional, incorporando nuevos productos y servicios tecnológicos, así como alianzas estratégicas para llegar a más segmentos.
+
+**Objetivo en Rentabilidad:**  
+Lograr una rentabilidad sostenida a través de la eficiencia operativa, la fidelización de clientes y la diversificación de fuentes de ingreso, garantizando retornos atractivos para los inversionistas y la reinversión en innovación.
 # OBJETIVOS ESPECÍFICOS
 
 *   Desarrollar una base de datos relacional que integra los
@@ -41,6 +51,8 @@ Soñamos con ser tu aliado tecnológico de confianza, donde encuentres más que 
 # FODA
 
 # CANVA 
+# Puntos Clave del Negocio
+
 
 # cual seria la ventaja competitiva de su proyecto virtual o negocio digital
 

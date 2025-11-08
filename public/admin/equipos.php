@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Conexión mediante MySQLi
-require_once '../config/connection.php';
+include_once '../../config/connection.php';
 
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: /public/login/login.php");

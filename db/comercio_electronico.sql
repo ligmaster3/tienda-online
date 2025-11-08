@@ -699,7 +699,7 @@ VALUES (
         '1500.00',
         10,
         1,
-        '//src//images//dell.jpg',
+        '/src/images/dell.jpg',
         'Laptop de alta gama con 16GB RAM'
     ),
     (
@@ -709,7 +709,7 @@ VALUES (
         '900.00',
         20,
         2,
-        '//src//images//Smartphone.jpg',
+        '/src/images/Smartphone.jpg',
         'Smartphone con excelente cámara'
     ),
     (
@@ -719,7 +719,7 @@ VALUES (
         '400.00',
         14,
         3,
-        '//src//images//tablet.jpg',
+        '/src/images/tablet.jpg',
         'Tablet ideal para ver contenido multimedia'
     ),
     (
@@ -729,7 +729,7 @@ VALUES (
         '50.00',
         50,
         4,
-        '//src//images//mouse.jpg',
+        '/src/images/mouse.jpg',
         'Mouse con conectividad Bluetooth'
     ),
     (
@@ -739,7 +739,7 @@ VALUES (
         '800.00',
         8,
         5,
-        '//src//images//camara.jpg',
+        '/src/images/camara.jpg',
         'Cámara con lentes intercambiables y grabación en 4K'
     ),
     (
@@ -749,7 +749,7 @@ VALUES (
         '120.00',
         30,
         6,
-        '//src//images//auriculares.jpg',
+        '/src/images/auriculares.jpg',
         'Auriculares con cancelación de ruido'
     ),
     (
@@ -759,7 +759,7 @@ VALUES (
         '39.99',
         45,
         7,
-        '//src//images//control.png',
+        '/src/images/control.png',
         'Control inalámbrico para jugar en dispositivos móviles, compatible con Android e iOS, con soporte para sostener el teléfono.'
     ),
     (
@@ -769,7 +769,7 @@ VALUES (
         '19.99',
         50,
         7,
-        '//src//images//fu.jpg',
+        '/src/images/fu.jpg',
         'Funda de alta resistencia para proteger la Nintendo Switch, incluye compartimientos para juegos y accesorios.'
     ),
     (
@@ -779,7 +779,7 @@ VALUES (
         '59.99',
         30,
         6,
-        '//src//images//auu.jpg',
+        '/src/images/auu.jpg',
         'Auriculares especialmente diseñados  con sonido envolvente y cancelación de ruido, compatibles con consolas y PC.'
     ),
     (
@@ -789,7 +789,7 @@ VALUES (
         '29.99',
         25,
         7,
-        '//src//images//so.jpg',
+        '/src/images/so.jpg',
         'Soporte que permite cargar dos controles de PlayStation 5 simultáneamente, ideal para mantener organizados los controles.'
     ),
     (
@@ -799,7 +799,7 @@ VALUES (
         '12.99',
         100,
         2,
-        '//src//images//templado.jpeg',
+        '/src/images/templado.jpeg',
         'Protector de pantalla de vidrio templado para iPhone 13, resistente a rayones y caídas, con alta claridad y sensibilidad al tacto.'
     ),
     (
@@ -809,7 +809,7 @@ VALUES (
         '8.99',
         75,
         7,
-        '//src//images//sj.jpg',
+        '/src/images/sj.jpg',
         'Joystick portátil que se adhiere a la pantalla de cualquier smartphone, ideal para juegos móviles de acción y aventura.'
     ),
     (
@@ -819,7 +819,7 @@ VALUES (
         '299.99',
         50,
         2,
-        '//src//images//a52.jpeg',
+        '/src/images/a52.jpeg',
         'Un smartphone con pantalla AMOLED, resistente al agua y con una cámara cuádruple de 64 MP.'
     ),
     (
@@ -829,7 +829,7 @@ VALUES (
         '499.99',
         10,
         7,
-        '//src//images//ps5.jpg',
+        '/src/images/ps5.jpg',
         'La PS5 ofrece gráficos impresionantes, velocidades de carga rápidas y una experiencia de juego inmersiva con su control DualSense.'
     ),
     (
@@ -839,7 +839,7 @@ VALUES (
         '649.99',
         30,
         1,
-        '//src//images//de.jpg',
+        '/src/images/de.jpg',
         'Portátil de alto rendimiento para tareas diarias, equipada con procesador Intel de última generación y almacenamiento SSD.'
     ),
     (
@@ -849,7 +849,7 @@ VALUES (
         '59.99',
         40,
         6,
-        '//src//images//aau.jpg',
+        '/src/images/aau.jpg',
         'Auriculares inalámbricos de alta calidad con tecnología Bluetooth 5.0, batería de larga duración y cancelación de ruido.'
     ),
     (
@@ -859,7 +859,7 @@ VALUES (
         '29.99',
         75,
         4,
-        '//src//images//carga.jpg',
+        '/src/images/carga.jpg',
         'Cargador portátil de alta capacidad, ideal para cargar tu smartphone o tablet cuando estás fuera de casa.'
     ),
     (
@@ -869,7 +869,7 @@ VALUES (
         '89.99',
         20,
         1,
-        '//src//images//tecladomec.jpg',
+        '/src/images/tecladomec.jpg',
         'Teclado mecánico de alta durabilidad con retroiluminación RGB y múltiples modos de color, perfecto para juegos y productividad.'
     ),
     (
@@ -879,7 +879,7 @@ VALUES (
         '15.99',
         50,
         3,
-        '//src//images//fundatablet.jpeg',
+        '/src/images/fundatablet.jpeg',
         'Funda protectora diseñada para brindar resistencia contra golpes y rayones, ideal para mantener segura tu tablet.'
     ),
     (
@@ -889,7 +889,7 @@ VALUES (
         '24.99',
         60,
         4,
-        '//src//images//cargacell.jpg',
+        '/src/images/cargacell.jpg',
         'Cargador compacto de 20W, ideal para una carga rápida y segura de dispositivos USB-C como smartphones y tablets.'
     ),
     (
@@ -899,7 +899,7 @@ VALUES (
         '19.99',
         100,
         4,
-        '//src//images//ra.jpg',
+        '/src/images/ra.jpg',
         'Ratón ergonómico diseñado para uso prolongado sin causar fatiga en la muñeca, con conectividad inalámbrica y alta precisión.'
     ),
     (
@@ -909,7 +909,7 @@ VALUES (
         '34.99',
         30,
         1,
-        '//src//images//sso.jpeg',
+        '/src/images/sso.jpeg',
         'Soporte ligero y ajustable que mejora la ventilación y la postura al utilizar la laptop. Compatible con modelos de hasta 15 pulgadas.'
     ),
     (
@@ -919,7 +919,7 @@ VALUES (
         '14.99',
         120,
         1,
-        '//src//images//hdmi.jpg',
+        '/src/images/hdmi.jpg',
         'Cable HDMI de alta velocidad, ideal para conectar dispositivos a pantallas 4K UHD con excelente calidad de imagen y sonido.'
     ),
     (
@@ -929,7 +929,7 @@ VALUES (
         '49.99',
         15,
         4,
-        '//src//images//cc.jpg',
+        '/src/images/cc.jpg',
         'Lámpara LED multifuncional con carga inalámbrica integrada, brillo ajustable y modo de luz nocturna, ideal para el escritorio.'
     ),
     (
@@ -939,7 +939,7 @@ VALUES (
         '49.99',
         40,
         6,
-        '//src//images//par.jpg',
+        '/src/images/par.jpg',
         'Parlante Bluetooth portátil con resistencia al agua, batería de larga duración y conectividad Bluetooth 5.0. Ideal para exteriores.'
     ),
     (
@@ -949,7 +949,7 @@ VALUES (
         '99.99',
         25,
         6,
-        '//src//images//dif.jpg',
+        '/src/images/dif.jpg',
         'Audífonos inalámbricos con cancelación de ruido, perfectos para escuchar música sin interrupciones en cualquier lugar. Incluye estuche de carga rápida.'
     ),
     (
@@ -959,7 +959,7 @@ VALUES (
         '299.99',
         15,
         5,
-        '//src//images//4k.jpg',
+        '/src/images/4k.jpg',
         'Cámara compacta que captura imágenes y videos en alta resolución 4K, con pantalla táctil y opciones de conectividad Wi-Fi y Bluetooth.'
     ),
     (
@@ -969,7 +969,7 @@ VALUES (
         '89.99',
         35,
         5,
-        '//src//images//cde.jpg',
+        '/src/images/cde.jpg',
         'Cámara de acción para deportes extremos, con resistencia al agua y grabación en Full HD, ideal para capturar aventuras al aire libre.'
     ),
     (
@@ -979,7 +979,7 @@ VALUES (
         '59.99',
         50,
         5,
-        '//src//images//vi.jpg',
+        '/src/images/vi.jpg',
         'Cámara de seguridad IP para monitoreo remoto, con visión nocturna y detección de movimiento, accesible desde dispositivos móviles.'
     ),
     (
@@ -989,7 +989,7 @@ VALUES (
         '79.99',
         20,
         5,
-        '//src//images//ins.jpg',
+        '/src/images/ins.jpg',
         'Cámara instantánea para imprimir fotos al instante, ideal para eventos y momentos especiales. Disponible en varios colores.'
     ),
     (
@@ -999,7 +999,7 @@ VALUES (
         '229.99',
         30,
         3,
-        '//src//images//a7.jpg',
+        '/src/images/a7.jpg',
         'Tablet con pantalla de alta resolución, batería de larga duración y altavoces Dolby Atmos. Perfecta para ver contenido multimedia y productividad.'
     ),
     (
@@ -1009,7 +1009,7 @@ VALUES (
         '329.99',
         25,
         3,
-        '//src//images//ipa.jpg',
+        '/src/images/ipa.jpg',
         'Apple iPad con procesador A13 Bionic, compatible con Apple Pencil y teclado inteligente. Ideal para estudiantes y creativos.'
     ),
     (
@@ -1019,7 +1019,7 @@ VALUES (
         '89.99',
         40,
         3,
-        '//src//images//am.jpg',
+        '/src/images/am.jpg',
         'Tablet de uso familiar con acceso a Alexa, ideal para lectura, navegación y entretenimiento. Excelente relación calidad-precio.'
     ),
     (
@@ -1029,7 +1029,7 @@ VALUES (
         '799.99',
         20,
         2,
-        '//src//images//iph.jpg',
+        '/src/images/iph.jpg',
         'iPhone 13 con pantalla Super Retina XDR, chip A15 Bionic y sistema avanzado de cámaras duales, disponible en varios colores.'
     ),
     (
@@ -1039,7 +1039,7 @@ VALUES (
         '749.99',
         15,
         2,
-        '//src//images//san.jpg',
+        '/src/images/san.jpg',
         'Samsung Galaxy S21 con pantalla de 120Hz, cámaras avanzadas y batería de larga duración. Ideal para fotografía y entretenimiento.'
     );
 
