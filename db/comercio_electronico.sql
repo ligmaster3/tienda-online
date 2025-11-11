@@ -56,43 +56,43 @@ VALUES (
         1,
         'Laptops',
         'Portátiles de última generación',
-        'imagenes\\laptops.jpg'
+        'imagenes\laptops.jpg'
     ),
     (
         2,
         'Smartphones',
         'Teléfonos inteligentes de diversas marcas',
-        'imagenes\\smart.jpeg'
+        'imagenes\smart.jpeg'
     ),
     (
         3,
         'Tablets',
         'Tabletas de distintas marcas y tamaños',
-        'imagenes\\tab.jpg'
+        'imagenes\tab.jpg'
     ),
     (
         4,
         'Accesorios',
         'Accesorios tecnológicos como teclados, ratones, etc.',
-        'imagenes\\acce.jpg'
+        'imagenes\acce.jpg'
     ),
     (
         5,
         'Cámaras',
         'Cámaras fotográficas y de video',
-        'imagenes\\ca.jpg'
+        'imagenes\ca.jpg'
     ),
     (
         6,
         'Audio',
         'Auriculares, altavoces, y otros dispositivos de audio',
-        'imagenes\\au.jpg'
+        'imagenes\au.jpg'
     ),
     (
         7,
         'Videojuegos',
         'ultimos juegos de multijugador para xbox y playstation',
-        'imagenes\\videoj.jpg'
+        'imagenes\videoj.jpg'
     );
 
 -- --------------------------------------------------------
