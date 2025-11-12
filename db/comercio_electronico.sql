@@ -56,13 +56,13 @@ VALUES (
         1,
         'Laptops',
         'Portátiles de última generación',
-        'imagenes\laptops.jpg'
+        'imagenes\computadora.jpg'
     ),
     (
         2,
         'Smartphones',
         'Teléfonos inteligentes de diversas marcas',
-        'imagenes\smart.jpeg'
+        'imagenes\celular.jpeg'
     ),
     (
         3,
@@ -74,7 +74,7 @@ VALUES (
         4,
         'Accesorios',
         'Accesorios tecnológicos como teclados, ratones, etc.',
-        'imagenes\acce.jpg'
+        'imagenes\accesorios.jpg'
     ),
     (
         5,
@@ -92,7 +92,7 @@ VALUES (
         7,
         'Videojuegos',
         'ultimos juegos de multijugador para xbox y playstation',
-        'imagenes\videoj.jpg'
+        'imagenes\consolas.webp.'
     );
 
 -- --------------------------------------------------------
@@ -1046,6 +1046,23 @@ VALUES (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `proveedores`
+--
+
+CREATE TABLE `proveedores` (
+    `id_proveedor` int(11) NOT NULL,
+    `nombre` varchar(255) NOT NULL,
+    `email` varchar(100) DEFAULT NULL,
+    `telefono` varchar(20) DEFAULT NULL,
+    `direccionCompañia` text,
+    'nombreCompañia' varchar(100) DEFAULT NULL,
+    `producto_id` int(11) DEFAULT NULL
+    'categoria_id' int(11) DEFAULT NULL,
+);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -1293,6 +1310,13 @@ ADD PRIMARY KEY (`id`),
 ADD KEY `categoria_id` (`categoria_id`);
 
 --
+-- Indices de la tabla `proveedores`
+--
+ALTER TABLE `proveedores`
+ADD PRIMARY KEY (`id_proveedor`),
+ADD KEY `producto_id` (`producto_id`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -1375,6 +1399,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
 AUTO_INCREMENT = 47;
 
 --
+-- AUTO_INCREMENT de la tabla `proveedores`
+--
+ALTER TABLE `proveedores`
+MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -1436,6 +1466,13 @@ ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`venta_id`) REFERENCES `ventas` (`i
 ALTER TABLE `productos`
 ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`) ON DELETE SET NULL;
 
+--
+-- Filtros para la tabla `proveedores`
+--
+ALTER TABLE `proveedores`
+ADD CONSTRAINT `proveedores_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE SET NULL,
+add CONSTRAINT `proveedores_ibfk_2` FOREIGN key ('producto_id') REFERENCES 'productos' ('id') on DELETE set null;
+ 
 --
 -- Filtros para la tabla `ventas`
 --
