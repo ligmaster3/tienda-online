@@ -168,3 +168,44 @@ Documentación: Documentación técnica y de usuario.
 ![alt text](image-1.png)
 
 ![alt text](image-2.png)
+
+
+
+## Despliegue y entorno de desarrollo (Node + Vercel)
+
+Estas instrucciones preparan un entorno Node mínimo para pruebas locales y funciones serverless en Vercel.
+
+- **Instalar dependencias (PowerShell):**
+
+```powershell
+npm install
+```
+
+- **Comandos útiles:**
+
+```powershell
+npm run dev    # Arranca el servidor local con nodemon (puerto 3000 por defecto)
+npm start      # Ejecuta server.js con node
+npx vercel dev # Simula entorno Vercel localmente (instalar vercel CLI si es necesario)
+```
+
+- **Endpoints de ejemplo:**
+    - `/api/health` — health check (tanto en server local como en Vercel via `api/health.js`).
+    - `/api/test-db` — intenta conectar a la base de datos usando variables de entorno (solo si `DB_*` están configuradas).
+
+- **Variables de entorno (colocar en `.env` para desarrollo o en el dashboard de Vercel):**
+
+```
+DB_HOST=localhost
+DB_USER=usuario
+DB_PASSWORD=secreto
+DB_DATABASE=nombre_db
+DB_PORT=3306
+
+PORT=3000
+```
+
+- **Notas sobre PHP:**
+    - El proyecto contiene una base importante en PHP (`public/`, `src/`, etc.). Vercel no ofrece un runtime PHP tradicional; si necesitas exponer las páginas PHP como backend, usa un host con soporte PHP (DigitalOcean, Render, Railway, o un VPS) y sirve el frontend estático desde Vercel si lo deseas.
+
+Si quieres que yo también prepare una guía para desplegar el backend PHP en Render o DigitalOcean, dime cuál prefieres.
