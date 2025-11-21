@@ -196,13 +196,7 @@ npx vercel dev # Simula entorno Vercel localmente (instalar vercel CLI si es nec
 - **Variables de entorno (colocar en `.env` para desarrollo o en el dashboard de Vercel):**
 
 ```
-DB_HOST=localhost
-DB_USER=usuario
-DB_PASSWORD=secreto
-DB_DATABASE=nombre_db
-DB_PORT=3306
 
-PORT=3000
 ```
 
 - **Notas sobre PHP:**
