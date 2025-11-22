@@ -1,0 +1,10 @@
+node_modules
+.git
+.env
+*.log
+.vscode
+db/comercio_electronico.sql
+README.md
+image.png
+image-1.png
+image-2.png
